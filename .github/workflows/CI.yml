@@ -1,0 +1,28 @@
+name: CI (Typescript)
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run:
+    name: Run
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest]
+        node-version: ['12.x', '14.x', '16.x']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node 
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - name: Install dependencies
+        run: make install
+      - name: Format code
+        run: make format
+      - name: Lint code
+        run: make lint

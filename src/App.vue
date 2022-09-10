@@ -66,7 +66,7 @@ function addCourseToCalendar(values: string) {
             </div>
             <div class="course-container">
               <ul>
-                <li v-for="course in courses.courses">
+                <li v-for="course in courses.courses" v-bind:key="course.code">
                   <article class="no-padding">
                     <header>
                       <h4>
@@ -78,6 +78,7 @@ function addCourseToCalendar(values: string) {
                           <li
                             v-for="group in course.groups.map((e) => e.number)"
                             v-on:click="courses.selectGroup(course.code, group)"
+                            v-bind:key="group"
                           >
                             <p>
                               Grupo {{ group }} ({{

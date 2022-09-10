@@ -2,7 +2,7 @@
 
 Una aplicacion creada para ayudar a los estudiantes de la Nacho a planificar su horario
 
-Tambien puedes acceder a este aplicativo desde el [hosting](https://jasprilla.me/UNHorario)
+Tambien puedes acceder a este aplicativo desde el [hosting](https://jdaar.github.io/UNHorario)
 
 # Roadmap
 - [x] Obtencion de informacion

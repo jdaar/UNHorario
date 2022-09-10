@@ -1,6 +1,7 @@
 {
   "name": "un-horario",
   "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",

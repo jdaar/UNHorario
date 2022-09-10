@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import "@fullcalendar/core/vdom"; // solves problem with Vite
-import FullCalendar from "@fullcalendar/vue3";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import bootstrapPlugin from "@fullcalendar/bootstrap5";
 import { useCourseStore } from "./stores/course";

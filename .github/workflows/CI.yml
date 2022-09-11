@@ -11,11 +11,11 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest, windows-latest]
-        node-version: ['14.x', '16.x']
+        node-version: ["14.x", "16.x"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Node 
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}

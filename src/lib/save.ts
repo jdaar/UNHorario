@@ -1,5 +1,5 @@
 import type { Course } from "@/stores/types";
-import { saveAs } from 'file-saver'
+import { saveAs } from "file-saver";
 import type { Store } from "pinia";
 
 /**
@@ -8,6 +8,8 @@ import type { Store } from "pinia";
  * @param courses The courses to serialize
  */
 export function downloadCourses(courses: Course[]) {
-   const file = new File([JSON.stringify(courses)], 'UNHorario.json', {type: 'application/json;charset=utf-8'})
-   saveAs(file)
+  const file = new File([JSON.stringify(courses)], "UNHorario.json", {
+    type: "application/json;charset=utf-8",
+  });
+  saveAs(file);
 }

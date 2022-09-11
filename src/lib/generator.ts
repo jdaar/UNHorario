@@ -7,7 +7,6 @@ import {
   type Lecture,
 } from "@/stores/types";
 
-
 /**
  * Parses a day to a date string
  * @since 0.0.1
@@ -15,14 +14,14 @@ import {
  * @returns The string representation of the day as date
  */
 export function hoursToDateString(hours: Hours) {
-  let dayHours = hours.hours.toLocaleString('en-US', {
+  let dayHours = hours.hours.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
-    useGrouping: false
-  })
-  let dayMinutes = hours.minutes.toLocaleString('en-US', {
+    useGrouping: false,
+  });
+  let dayMinutes = hours.minutes.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
-    useGrouping: false
-  })
+    useGrouping: false,
+  });
   return `${dayHours}:${dayMinutes}:00`;
 }
 

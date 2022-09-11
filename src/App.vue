@@ -8,7 +8,7 @@ import type { Course } from "./stores/types";
 import { ref } from "vue";
 import { computed } from "@vue/reactivity";
 import { downloadIcsFromEvents } from "./lib/ics";
-import { downloadCourses } from './lib/save'
+import { downloadCourses } from "./lib/save";
 
 const courseHtml = ref("");
 const courses = useCourseStore();
@@ -22,11 +22,14 @@ const events = computed(() =>
     .map((course: Course) =>
       course.groups[course.selectedGroup! - 1].lectures.map((lecture) => ({
         title: course.name,
-        daysOfWeek: [ lecture.day ],
+        daysOfWeek: [lecture.day],
         startTime: hoursToDateString(lecture.start),
         endTime: hoursToDateString(lecture.end),
         groupId: course.code,
-        color: `#${(Math.floor(Math.random()*16777215)%Math.floor(16777215/2)+Math.floor(16777215/4)).toString(16)}`,
+        color: `#${(
+          (Math.floor(Math.random() * 16777215) % Math.floor(16777215 / 2)) +
+          Math.floor(16777215 / 4)
+        ).toString(16)}`,
         allDay: false,
       }))
     )
@@ -55,14 +58,13 @@ function addCourseToCalendar(values: string) {
   courses.addCourse(course);
 }
 
-
 /**
  * For use in uploadCourses
  * @since 0.0.2
  * @internal
  */
 interface HTMLInputEvent extends Event {
-  target: HTMLInputElement & EventTarget
+  target: HTMLInputElement & EventTarget;
 }
 
 /**
@@ -72,9 +74,9 @@ interface HTMLInputEvent extends Event {
  */
 function uploadCourses(event: Event) {
   const files =
-      (event as HTMLInputEvent).target.files ||
-      (event as DragEvent).dataTransfer!.files
-  if (!files.length) return
+    (event as HTMLInputEvent).target.files ||
+    (event as DragEvent).dataTransfer!.files;
+  if (!files.length) return;
 
   /**
    * Parses the string value as JSON and executes courses.uploadCourses
@@ -82,16 +84,16 @@ function uploadCourses(event: Event) {
    * @internal
    * @param value The string to be parsed
    */
-  function asyncHandler (value: string) {
-    courses.uploadCourses(JSON.parse(value) as Course[])
+  function asyncHandler(value: string) {
+    courses.uploadCourses(JSON.parse(value) as Course[]);
   }
-  
+
   files[0]
     .text()
     .then(asyncHandler)
     .catch((error) => {
-      console.error(error)
-    })
+      console.error(error);
+    });
 }
 </script>
 
@@ -99,7 +101,7 @@ function uploadCourses(event: Event) {
   <div class="container app">
     <div class="main">
       <main>
-        <h1><b style="color: var(--primary)">UN</b>Horario</h1>
+        <img src="/logo.svg" style="max-width: 200px;" alt="UNHorario">
         <article>
           <div class="parent">
             <div class="calendar">
@@ -108,9 +110,19 @@ function uploadCourses(event: Event) {
               ></FullCalendar>
             </div>
             <div class="course-container">
-              <button class="outline" v-on:click="downloadIcsFromEvents(events)">Descargar ICS</button>
-              <button class="outline" v-on:click="downloadCourses(courses.courses)">Descargar UNHorario</button>
-              <input type="file" class="outline" @change="uploadCourses"/>
+              <button
+                class="outline"
+                v-on:click="downloadIcsFromEvents(events)"
+              >
+                Descargar ICS
+              </button>
+              <button
+                class="outline"
+                v-on:click="downloadCourses(courses.courses)"
+              >
+                Descargar UNHorario
+              </button>
+              <input type="file" class="outline" @change="uploadCourses" />
               <ul class="mt">
                 <li v-for="course in courses.courses" v-bind:key="course.code">
                   <article class="no-padding">
@@ -177,7 +189,9 @@ function uploadCourses(event: Event) {
           </footer>
         </article>
       </main>
-      <footer>Creado por <a href="https://jasprilla.me">Jhonatan David</a></footer>
+      <footer>
+        Creado por <a href="https://jasprilla.me">Jhonatan David</a>
+      </footer>
     </div>
   </div>
 </template>
@@ -194,7 +208,6 @@ function uploadCourses(event: Event) {
 }
 
 @media (max-width: 1024px) {
-
   .parent {
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 1fr;
@@ -257,7 +270,7 @@ ul {
 }
 
 .mt {
-margin-top: 3em !important;
+  margin-top: 3em !important;
 }
 
 .calendar {

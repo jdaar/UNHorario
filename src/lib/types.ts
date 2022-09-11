@@ -1,11 +1,11 @@
-import type { Day } from '@/stores/types';
+import type { Day } from "@/stores/types";
 
 export interface ICalendarEvent {
   title: string;
-  daysOfWeek: Day[]
+  daysOfWeek: Day[];
   startTime: string;
   endTime: string;
   allDay: boolean;
   color: string;
-  groupId: string
+  groupId: string;
 }

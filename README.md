@@ -20,14 +20,16 @@
 
 Para ejecutar la aplicacion se hace uso del comando `yarn dev`.
 
-## Como probar 
+## Como probar
 
 > #### Advertencia
+>
 > Todavia no existen test por lo que puede resultar en errores
 
 Para correr las pruebas se hace uso del comando `yarn test`.
 
 # Roadmap
+
 - [x] Obtencion de informacion
 - [x] Implementar visualizacion de horario
 - [ ] Creacion de test unitarios y de integracion

@@ -102,9 +102,10 @@ function uploadCourses(event: Event) {
         <h1><b style="color: var(--primary)">UN</b>Horario</h1>
         <article>
           <div class="parent">
-            <div style="min-width: 70%">
+            <div class="calendar">
               <FullCalendar
                 :options="fullCalendarOptions.calendarOptions"
+                style="height: 100%"
               ></FullCalendar>
             </div>
             <div class="course-container">
@@ -177,7 +178,7 @@ function uploadCourses(event: Event) {
           </footer>
         </article>
       </main>
-      <footer>Made by <a href="https://jasprilla.me">Jhonatan David</a></footer>
+      <footer>Creado por <a href="https://jasprilla.me">Jhonatan David</a></footer>
     </div>
   </div>
 </template>
@@ -194,6 +195,7 @@ function uploadCourses(event: Event) {
 }
 
 @media (max-width: 1024px) {
+
   .parent {
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 3fr;
@@ -201,8 +203,12 @@ function uploadCourses(event: Event) {
     grid-column-gap: 0px;
     grid-row-gap: 15px;
     grid-auto-flow: row;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
+  }
+
+  .calendar {
+    height: 40em;
   }
 }
 
@@ -253,5 +259,9 @@ ul {
 
 .mt {
 margin-top: 3em !important;
+}
+
+.calendar {
+  min-width: 70%;
 }
 </style>

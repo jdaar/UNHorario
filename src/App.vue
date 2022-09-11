@@ -7,6 +7,8 @@ import { courseGenerator, hoursToDateString } from "./lib/generator";
 import type { Course } from "./stores/types";
 import { ref } from "vue";
 import { computed } from "@vue/reactivity";
+import { downloadIcsFromEvents } from "./lib/ics";
+import { downloadCourses } from './lib/save'
 
 const courseHtml = ref("");
 const courses = useCourseStore();
@@ -20,9 +22,11 @@ const events = computed(() =>
     .map((course: Course) =>
       course.groups[course.selectedGroup! - 1].lectures.map((lecture) => ({
         title: course.name,
-        daysOfTheWeek: [lecture.day],
+        daysOfWeek: [ lecture.day ],
         startTime: hoursToDateString(lecture.start),
         endTime: hoursToDateString(lecture.end),
+        groupId: course.code,
+        color: `#${(Math.floor(Math.random()*16777215)%Math.floor(16777215/2)+Math.floor(16777215/4)).toString(16)}`,
         allDay: false,
       }))
     )
@@ -43,11 +47,51 @@ const fullCalendarOptions = computed(() => ({
 
 /**
  * Generates a course and adds it to the store
+ * @since 0.0.1
  * @param values The string to parse and add to the calendar
  */
 function addCourseToCalendar(values: string) {
   let course = courseGenerator(values);
   courses.addCourse(course);
+}
+
+
+/**
+ * For use in uploadCourses
+ * @since 0.0.2
+ * @internal
+ */
+interface HTMLInputEvent extends Event {
+  target: HTMLInputElement & EventTarget
+}
+
+/**
+ * Uploads courses as JSON and parses them
+ * @since 0.0.2
+ * @param event DOM event that triggers the function
+ */
+function uploadCourses(event: Event) {
+  const files =
+      (event as HTMLInputEvent).target.files ||
+      (event as DragEvent).dataTransfer!.files
+  if (!files.length) return
+
+  /**
+   * Parses the string value as JSON and executes courses.uploadCourses
+   * @since 0.0.2
+   * @internal
+   * @param value The string to be parsed
+   */
+  function asyncHandler (value: string) {
+    courses.uploadCourses(JSON.parse(value) as Course[])
+  }
+  
+  files[0]
+    .text()
+    .then(asyncHandler)
+    .catch((error) => {
+      console.error(error)
+    })
 }
 </script>
 
@@ -64,7 +108,10 @@ function addCourseToCalendar(values: string) {
               ></FullCalendar>
             </div>
             <div class="course-container">
-              <ul>
+              <button class="outline" v-on:click="downloadIcsFromEvents(events)">Descargar ICS</button>
+              <button class="outline" v-on:click="downloadCourses(courses.courses)">Descargar UNHorario</button>
+              <input type="file" class="outline" @change="uploadCourses"/>
+              <ul class="mt">
                 <li v-for="course in courses.courses" v-bind:key="course.code">
                   <article class="no-padding">
                     <header>
@@ -149,8 +196,8 @@ function addCourseToCalendar(values: string) {
 @media (max-width: 1024px) {
   .parent {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr;
-    max-height: 75em;
+    grid-template-rows: 2fr 3fr;
+    max-height: 150em;
     grid-column-gap: 0px;
     grid-row-gap: 15px;
     grid-auto-flow: row;
@@ -202,5 +249,9 @@ ul {
 .no-padding {
   padding-top: 0;
   padding-bottom: 1px;
+}
+
+.mt {
+margin-top: 3em !important;
 }
 </style>

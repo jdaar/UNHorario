@@ -23,7 +23,10 @@ export const useCourseStore = defineStore('course', () => {
    * @since 0.0.1
    */
   function addCourse(course: Course) {
-    courses.value.push(course)
+    let actualCourse = courses.value.find((c) => c.code === course.code)
+    if (!actualCourse) {
+      courses.value.push(course)
+    }
   }
 
   /**
@@ -57,5 +60,15 @@ export const useCourseStore = defineStore('course', () => {
     }
   }
 
-  return { courses, addCourse, removeCourse, selectGroup, switchIncludeCourse }
+  function uploadCourses(new_courses: Course[]) {
+    for (let i = 0; i < courses.value.length; i += 1) {
+      removeCourse(courses.value[i].code)
+    }
+
+    for (let i = 0; i < new_courses.length; i += 1) {
+      addCourse(new_courses[i])
+    }
+  }
+
+  return { courses, addCourse, removeCourse, selectGroup, switchIncludeCourse, uploadCourses }
 })

@@ -6,9 +6,10 @@
     Una aplicacion creada para ayudar a los estudiantes de la Nacho a planificar su horario. [UNHorario](https://jdaar.github.io/UNHorario)
 </p>
 
-<p>
+<p align="center">
     <img src="https://github.com/jdaar/UNHorario/actions/workflows/CI.yml/badge.svg?branch=master" alt="CI (Typescript)"></img>
 </p>
+
 ---
 
 ## Interfaz de la aplicacion

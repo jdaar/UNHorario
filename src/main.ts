@@ -6,6 +6,7 @@ import App from './App.vue'
 const app = createApp(App)
 
 app.component('FullCalendar', FullCalendar)
+
 app.use(createPinia())
 
 app.mount('#app')

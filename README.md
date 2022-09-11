@@ -10,6 +10,7 @@ Tambien puedes acceder a este aplicativo desde el [hosting](https://jdaar.github
 - [ ] Creacion de test unitarios y de integracion
 - [ ] Serializacion y guardado de informacion
 - [ ] Exportacion a formato ICS
+- [ ] Añadir soporte para movil
 
 ## Como ejecutar
 

@@ -2,7 +2,13 @@
   <a href="http://jdaar.github.io/UNHorario" target="blank"><img src="https://svgshare.com/i/m_Z.svg" width="120" alt="UNHorario" /></a>
 </p>
 
-Una aplicacion creada para ayudar a los estudiantes de la Nacho a planificar su horario. [UNHorario](https://jdaar.github.io/UNHorario)
+<p align="center">
+    Una aplicacion creada para ayudar a los estudiantes de la Nacho a planificar su horario. [UNHorario](https://jdaar.github.io/UNHorario)
+</p>
+
+<p>
+    <img src="https://github.com/jdaar/UNHorario/actions/workflows/CI.yml/badge.svg?branch=master" alt="CI (Typescript)"></img>
+</p>
 ---
 
 ## Interfaz de la aplicacion

@@ -7,7 +7,7 @@ Una aplicacion creada para ayudar a los estudiantes de la Nacho a planificar su 
 
 ## Interfaz de la aplicacion
 
-[UNHorario.png](https://postimg.cc/QFFhVCS2)
+![UNHorario.png](https://postimg.cc/QFFhVCS2)
 
 ## Como ejecutar
 

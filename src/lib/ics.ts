@@ -1,6 +1,7 @@
 import type { ICalendarEvent } from "./types";
 import { ICalendar } from "datebook";
 
+
 /**
  * Gets the days between two dates
  * @since 0.0.2
@@ -95,6 +96,7 @@ export async function downloadIcsFromEvents(events: ICalendarEvent[]) {
             interval: 1,
           },
         });
+        calendar.addProperty("COLOR", events[i].color);
       } else {
         const newCalendar = new ICalendar({
           title: events[i].title,
@@ -106,6 +108,7 @@ export async function downloadIcsFromEvents(events: ICalendarEvent[]) {
             interval: 1,
           },
         });
+        newCalendar.addProperty("COLOR", events[i].color);
 
         calendar!.addEvent(newCalendar);
       }

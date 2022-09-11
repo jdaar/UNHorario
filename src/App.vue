@@ -13,6 +13,28 @@ import { downloadCourses } from "./lib/save";
 const courseHtml = ref("");
 const courses = useCourseStore();
 
+const COLORS = [
+  "#f94144", // red
+  "#f3722c", // orange
+  "#f8961e", // yellow
+  "#f9844a", // yellow-orange
+  "#f9c74f", // yellow-green
+  "#90be6d", // green
+  "#43aa8b", // green-blue
+  "#4d908e", // blue-green
+  "#577590", // blue
+  "#277da1", // blue-purple
+];
+
+/**
+ * Generates a random color from the COLORS array
+ * @since 0.0.3
+ * @internal
+ */
+function getRandomColor(): string {
+  return COLORS[Math.floor(Math.random() * COLORS.length)];
+}
+
 /**
  * Contains all the events that will be displayed in the calendar.
  */
@@ -26,10 +48,7 @@ const events = computed(() =>
         startTime: hoursToDateString(lecture.start),
         endTime: hoursToDateString(lecture.end),
         groupId: course.code,
-        color: `#${(
-          (Math.floor(Math.random() * 16777215) % Math.floor(16777215 / 2)) +
-          Math.floor(16777215 / 4)
-        ).toString(16)}`,
+        color: getRandomColor(),
         allDay: false,
       }))
     )
@@ -101,7 +120,7 @@ function uploadCourses(event: Event) {
   <div class="container app">
     <div class="main">
       <main>
-        <img src="/logo.svg" style="max-width: 200px;" alt="UNHorario">
+        <img src="/logo.svg" style="max-width: 100px;" alt="UNHorario">
         <article>
           <div class="parent">
             <div class="calendar">
@@ -110,19 +129,22 @@ function uploadCourses(event: Event) {
               ></FullCalendar>
             </div>
             <div class="course-container">
+              <label class="upload-btn">
+                <input type="file" class="" @change="uploadCourses" />
+                Cargar UNHorario 
+              </label>
               <button
-                class="outline"
                 v-on:click="downloadIcsFromEvents(events)"
               >
                 Descargar ICS
               </button>
               <button
-                class="outline"
                 v-on:click="downloadCourses(courses.courses)"
               >
                 Descargar UNHorario
               </button>
-              <input type="file" class="outline" @change="uploadCourses" />
+
+
               <ul class="mt">
                 <li v-for="course in courses.courses" v-bind:key="course.code">
                   <article class="no-padding">
@@ -279,5 +301,22 @@ ul {
 
 .calendar > .fc {
   height: 100%;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 0.8em 1em;
+  margin-bottom: 1em;
+  text-decoration: none;
+  background: var(--primary);
+  color: #FFF;
+  border-radius: 3px;
+  width: 100%;
+  text-align: center;
+  border: none;
+}
+
+.upload-btn > input {
+  display: none;
 }
 </style>

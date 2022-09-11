@@ -105,7 +105,6 @@ function uploadCourses(event: Event) {
             <div class="calendar">
               <FullCalendar
                 :options="fullCalendarOptions.calendarOptions"
-                style="height: 100%"
               ></FullCalendar>
             </div>
             <div class="course-container">
@@ -198,7 +197,7 @@ function uploadCourses(event: Event) {
 
   .parent {
     grid-template-columns: 1fr;
-    grid-template-rows: 2fr 3fr;
+    grid-template-rows: 2fr 1fr;
     max-height: 150em;
     grid-column-gap: 0px;
     grid-row-gap: 15px;
@@ -263,5 +262,9 @@ margin-top: 3em !important;
 
 .calendar {
   min-width: 70%;
+}
+
+.calendar > .fc {
+  height: 100%;
 }
 </style>

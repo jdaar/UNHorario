@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-    Una aplicacion creada para ayudar a los estudiantes de la Nacho a planificar su horario. [UNHorario](https://jdaar.github.io/UNHorario)
+    Una aplicacion creada para ayudar a los estudiantes de la Nacho a planificar su horario. <a href="https://jdaar.github.io/UNHorario">Ir a UNHorario</a>
 </p>
 
 <p align="center">

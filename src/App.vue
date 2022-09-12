@@ -237,7 +237,7 @@ function uploadCourses(event: Event) {
 @media (max-width: 1024px) {
   .parent {
     grid-template-columns: 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
     max-height: 150em;
     grid-column-gap: 0px;
     grid-row-gap: 15px;

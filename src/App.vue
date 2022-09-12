@@ -216,7 +216,7 @@ function uploadCourses(event: Event) {
           </footer>
         </article>
       </main>
-      <footer>
+      <footer class="credits">
         Creado por <a href="https://jasprilla.me">Jhonatan David</a>
       </footer>
     </div>
@@ -353,6 +353,10 @@ ul {
 
 .header > ul > li > a {
   text-decoration: none;
+  font-size: larger;
+}
+
+.credits {
   font-size: larger;
 }
 </style>

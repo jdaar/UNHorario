@@ -120,7 +120,12 @@ function uploadCourses(event: Event) {
   <div class="container app">
     <div class="main">
       <main>
-        <img src="/logo.svg" style="max-width: 100px;" alt="UNHorario">
+        <header class="header">
+          <img src="/logo.svg" alt="UNHorario">
+          <ul>
+            <li><a href="https://github.com/jdaar/UNHorario/blob/master/USAGE.md">¿Necesitas ayuda?</a></li>
+          </ul>
+        </header>
         <article>
           <div class="parent">
             <div class="calendar">
@@ -314,9 +319,40 @@ ul {
   width: 100%;
   text-align: center;
   border: none;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  background: var(--primary-hover);
 }
 
 .upload-btn > input {
   display: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
+.header > img {
+  max-width: 110px;
+}
+
+.header > ul {
+  margin: 0;
+  padding: 0;
+}
+
+.header > ul > li {
+  display: inline-block;
+  margin-left: 1em;
+}
+
+.header > ul > li > a {
+  text-decoration: none;
+  font-size: larger;
 }
 </style>

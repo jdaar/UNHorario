@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://jdaar.github.io/UNHorario" target="blank"><img src="https://svgshare.com/i/m_Z.svg" width="120" alt="UNHorario" /></a>
+  <a href="http://jdaar.github.io/UNHorario" target="blank"><img src="./public/logo.svg" width="120" alt="UNHorario" /></a>
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 ## Interfaz de la aplicacion
 
-![UNHorario](https://i.postimg.cc/RZRFsntZ/Screenshot-2022-09-11-at-13-47-21-UNHorario.png)
+![UNHorario](./images/app.example.png)
 
 ## Como ejecutar
 

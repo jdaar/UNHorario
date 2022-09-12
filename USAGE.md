@@ -6,8 +6,6 @@
     Como usar la herramienta
 </h1>
 
----
-
 Para usar la herramienta primero tendremos que dirigirnos a la pagina del curso que deseemos inscribir, estando en esta pagina basta con presionar las siguientes teclas:
 - `Ctrl+A`
 - `Ctrl+C`

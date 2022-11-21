@@ -158,16 +158,16 @@ function uploadCourses(event: Event) {
                         {{ course.name }} <b>({{ course.code }})</b>
                       </h4>
                       <details role="list">
-                        <summary>Grupo {{ course.selectedGroup }}</summary>
+                        <summary>{{ course.selectedGroup ? course.groups.filter(v => v.number == course.selectedGroup)[0].name : 'Seleccione un grupo' }}</summary>
                         <ul role="listbox" class="group-container">
                           <li
-                            v-for="group in course.groups.map((e) => e.number)"
-                            v-on:click="courses.selectGroup(course.code, group)"
+                            v-for="group in course.groups.map((e) => ({number: e.number, name: e.name}))"
+                            v-on:click="courses.selectGroup(course.code, group.number)"
                             v-bind:key="group"
                           >
                             <p>
-                              Grupo {{ group }} ({{
-                                course.groups[group - 1].teacher
+                              Grupo {{ group.name }} ({{
+                                course.groups[group.number - 1].teacher
                               }})
                             </p>
                           </li>
@@ -184,6 +184,9 @@ function uploadCourses(event: Event) {
                       <h5>
                         Del componente <b>{{ course.type }}</b> con
                         <b>{{ course.credits }}</b> creditos
+                      </h5>
+                      <h5>
+                        <b>{{ course.selectedGroup ? course.groups.filter(v => v.number == course.selectedGroup)[0].availablePlaces : 0 }}</b> cupos disponibles 
                       </h5>
                       <label
                         for="switch"

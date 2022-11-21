@@ -35,4 +35,4 @@ Para correr las pruebas se hace uso del comando `yarn test`.
 - [x] Creacion de test unitarios y de integracion
 - [x] Serializacion y guardado de informacion
 - [x] Exportacion a formato ICS
-- [ ] Añadir soporte para movil
+- [x] Añadir soporte para movil

@@ -95,13 +95,12 @@ export function lectureGenerator(values: string): Lecture[] {
  * @returns Parsed string as Group[]
  */
 export function groupGenerator(values: string): Group[] {
-  const groupRegex = /\((.*\-)?[0-9]*\).*Grupo [0-9]{1,2}.*/i;
+  const groupRegex = /\((.*-)?[0-9]*\).*Grupo [0-9]{1,2}.*/i;
   const groupNames = values
     .split('\n')
     .map(v => v.match(groupRegex))
     .filter(v => v != null)
     .map(v => v![0])
-    console.log(groupNames)
   const relevantData = values
     .split(groupRegex)
     .filter(v => v != undefined && v.length > 10)

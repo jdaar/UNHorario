@@ -1,6 +1,5 @@
 import type { Course } from "@/stores/types";
 import { saveAs } from "file-saver";
-import type { Store } from "pinia";
 
 /**
  * Gets courses ands serializes them in json format, then downloads the input

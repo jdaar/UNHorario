@@ -163,7 +163,7 @@ function uploadCourses(event: Event) {
                           <li
                             v-for="group in course.groups.map((e) => ({number: e.number, name: e.name}))"
                             v-on:click="courses.selectGroup(course.code, group.number)"
-                            v-bind:key="group"
+                            v-bind:key="group.number"
                           >
                             <p>
                               Grupo {{ group.name }} ({{

@@ -26,6 +26,8 @@ jobs:
         run: make format
       - name: Lint code
         run: make lint
+      - name: Test code
+        run: make test 
       - name: Build code
         run: make build
       - name: Deploy

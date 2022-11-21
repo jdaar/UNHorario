@@ -44,6 +44,7 @@ export type Course = {
  * @since 0.0.1
  */
 export type Group = {
+  name: string;
   teacher: string;
   number: number;
   availablePlaces: number;

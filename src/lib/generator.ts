@@ -75,15 +75,10 @@ export function asHour(hourString: string): Hours {
  */
 export function lectureGenerator(values: string): Lecture[] {
   const returnValue: Lecture[] = values
-    .replace("Horarios/Aula: No informadoFecha:", "")
-    .split(".")
-    .map((value) =>
-      value.replace(
-        /[0-9]{2}\/[0-9]{2}\/[0-9]{4} - [0-9]{2}\/[0-9]{2}\/[0-9]{4}/,
-        ""
-      )
-    )
-    .filter((value, index) => index % 5 === 0 && value !== "")
+    .replace("Horarios/Aula: No informado", "")
+    .split("Duración")[0]
+    .split('\n')
+    .filter(v => v.match(/.* de [0-9]{2}:[0-9]{2} a [0-9]{2}:[0-9]{2}/i))
     .map((value) => ({
       day: asDay(value.split(" de ")[0]),
       start: asHour(value.split(" de ")[1].split(" a ")[0]),
@@ -100,9 +95,16 @@ export function lectureGenerator(values: string): Lecture[] {
  * @returns Parsed string as Group[]
  */
 export function groupGenerator(values: string): Group[] {
-  const groupRegex = /\([1-9]*\) Grupo [1-9].*\n/;
+  const groupRegex = /\((.*\-)?[0-9]*\).*Grupo [0-9]{1,2}.*/i;
+  const groupNames = values
+    .split('\n')
+    .map(v => v.match(groupRegex))
+    .filter(v => v != null)
+    .map(v => v![0])
+    console.log(groupNames)
   const relevantData = values
     .split(groupRegex)
+    .filter(v => v != undefined && v.length > 10)
     .map((value) => value.trim())
     .filter((value) => value !== "");
   let returnValue = [];
@@ -110,10 +112,11 @@ export function groupGenerator(values: string): Group[] {
   for (let i = 0; i < relevantData.length; i++) {
     let actualData = relevantData[i].split("Volver")[0].split("\n");
     let group: Group = {
+      name: groupNames[i],
       teacher: actualData[0].split(":")[1].replace(".", ""),
       number: i + 1,
-      availablePlaces: parseInt(actualData[5].split(":")[1]),
-      lectures: lectureGenerator(actualData[2]),
+      availablePlaces: parseInt(actualData.filter(v => v.match(/Cupos disponibles: [0-9]+/i))[0].split(': ')[1]),
+      lectures: lectureGenerator(actualData.filter((_v, i) => i > 2).join('\n')),
     };
     returnValue.push(group);
   }

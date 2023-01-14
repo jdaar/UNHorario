@@ -9,6 +9,8 @@ import { ref } from "vue";
 import { computed } from "@vue/reactivity";
 import { downloadIcsFromEvents } from "./lib/ics";
 import { downloadCourses } from "./lib/save";
+import { uploadComment, getComments, getRatings, uploadRating } from "./lib/firestore";
+
 
 const courseHtml = ref("");
 const courses = useCourseStore();
@@ -33,6 +35,49 @@ const COLORS = [
  */
 function getRandomColor(): string {
   return COLORS[Math.floor(Math.random() * COLORS.length)];
+}
+
+
+const refresh = ref(false);
+
+const comments = computed(() => {
+  if (refresh) {
+    let returnValue = new Map<string, string[]>();
+    courses.courses.forEach((course) => {
+      course.groups.map(group => {
+        getComments(group.teacher).then((value) => {
+          returnValue.set(group.teacher, value ?? []);
+        });
+      });
+    });
+    refresh.value = false;
+    return returnValue;
+  }
+})
+
+const ratings = computed(() => {
+  if (refresh) {
+    let returnValue = new Map<string, number>();
+    courses.courses.forEach((course) => {
+      course.groups.map(group => {
+        getRatings(group.teacher).then((value) => {
+          returnValue.set(group.teacher, value?.reduce((accumulator, value) => accumulator + (value ? 1 : 0), 0) ?? 0);
+        });
+      });
+    });
+    refresh.value = false;
+    return returnValue;
+  }
+})
+
+const uploadRefreshRatings = (value: boolean, teacher_name: string) => {
+  uploadRating(value, teacher_name);
+  refresh.value = true;
+}
+
+const uploadRefreshComments = (content: string, teacher_name: string) => {
+  uploadComment(content, teacher_name);
+  refresh.value = true;
 }
 
 /**
@@ -168,6 +213,8 @@ function uploadCourses(event: Event) {
                             <p>
                               Grupo {{ group.name }} ({{
                                 course.groups[group.number - 1].teacher
+                              }}, calificacion: {{
+                                
                               }})
                             </p>
                           </li>
@@ -180,6 +227,22 @@ function uploadCourses(event: Event) {
                             course.groups[course.selectedGroup - 1].teacher
                           }}</b>
                         </h5>
+                        <div class="grid">
+                          <button
+                            v-on:click="uploadRefreshRatings(true, course.groups[course.selectedGroup - 1].teacher)"
+                          >
+                            <b>
+                              +
+                            </b>
+                          </button>
+                          <button
+                            v-on:click="uploadRefreshRatings(false, course.groups[course.selectedGroup - 1].teacher)"
+                          >
+                            <b>
+                              -
+                            </b>
+                          </button>
+                        </div>
                       </div>
                       <h5>
                         Del componente <b>{{ course.type }}</b> con

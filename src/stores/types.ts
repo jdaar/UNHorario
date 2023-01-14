@@ -60,3 +60,10 @@ export type Lecture = {
   end: Hours;
   day: Day;
 };
+
+export type Feedback = {
+  value: boolean;
+  voted: boolean;
+  rating: number;
+  teacher_name: string;
+}  

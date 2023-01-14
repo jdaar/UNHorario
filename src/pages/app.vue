@@ -1,9 +1,6 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <layout>
-    <calendar />
-    <sidebar />
-  </layout>
+  <MainLayout>
+    <CourseCalendar />
+    <MainSidebar />
+  </MainLayout>
 </template>

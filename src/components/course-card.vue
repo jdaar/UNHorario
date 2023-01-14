@@ -14,7 +14,7 @@ const props = defineProps<{
 }>();
 
 const teacher = computed(
-  () => props.course.groups[props.course.selectedGroup ?? 1 - 1].teacher
+  () => props.course.groups[props.course.selectedGroup! - 1]?.teacher
 );
 
 watch(teacher, (newValue) => {
@@ -90,7 +90,7 @@ async function addComment(content: string) {
             v-on:click="
               feedbacks.sendFeedback(
                 true,
-                course.groups[course.selectedGroup ?? 0 - 1].teacher
+                teacher
               )
             "
           >
@@ -100,7 +100,7 @@ async function addComment(content: string) {
             v-on:click="
               feedbacks.sendFeedback(
                 false,
-                course.groups[course.selectedGroup ?? 0 - 1].teacher
+                teacher
               )
             "
           >
@@ -108,7 +108,7 @@ async function addComment(content: string) {
           </button>
         </div>
         <h5>¿Deseas compartir tu opinion de este docente?</h5>
-        <textArea :callback="addComment">Publicar</textArea>
+        <TextArea :callback="addComment">Publicar</TextArea>
       </div>
       <label for="switch" style="display: flex; align-items: center">
         <input

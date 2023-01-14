@@ -34,7 +34,7 @@ function addCourseToCalendar(values: string) {
             <slot></slot>
           </div>
           <footer>
-            <textArea :callback="addCourseToCalendar">Añadir curso</textArea>
+            <text-area :callback="addCourseToCalendar">Añadir curso</text-area>
           </footer>
         </article>
       </main>

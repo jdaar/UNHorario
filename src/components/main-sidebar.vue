@@ -80,7 +80,7 @@ function uploadCourses(event: Event) {
     </button>
     <ul class="mt">
       <li v-for="course in courses.courses" v-bind:key="course.code">
-        <courseCard :course="course" />
+        <CourseCard :course="course" />
       </li>
     </ul>
   </div>

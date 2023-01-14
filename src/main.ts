@@ -6,14 +6,16 @@ import CourseCalendar from "@/components/course-calendar.vue";
 import MainSidebar from "@/components/main-sidebar.vue";
 import MainLayout from "@/components/main-layout.vue";
 import TextArea from "@/components/text-area.vue";
+import CourseCard from "./components/course-card.vue";
 
 const app = createApp(App);
 
 app.component("FullCalendar", FullCalendar);
-app.component("calendar", CourseCalendar);
-app.component("sidebar", MainSidebar);
-app.component("layout", MainLayout);
-app.component("textArea", TextArea);
+app.component("CourseCalendar", CourseCalendar);
+app.component("MainSidebar", MainSidebar);
+app.component("CourseCard", CourseCard);
+app.component("MainLayout", MainLayout);
+app.component("TextArea", TextArea);
 
 app.use(createPinia());
 

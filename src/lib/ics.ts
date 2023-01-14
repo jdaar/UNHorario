@@ -1,7 +1,6 @@
 import type { ICalendarEvent } from "./types";
 import { ICalendar } from "datebook";
 
-
 /**
  * Gets the days between two dates
  * @since 0.0.2
@@ -23,7 +22,7 @@ export function getTotalDays(start: Date, end: Date) {
  */
 export function getNearestDay(date: Date, expected_day: number) {
   const currentDay = new Date().getDay();
-  let returnValue = new Date(date);
+  const returnValue = new Date(date);
   if (currentDay > expected_day) {
     returnValue.setDate(date.getDate() + (expected_day + 7 - currentDay) + 2);
   } else {
@@ -52,7 +51,7 @@ export async function downloadIcsFromEvents(events: ICalendarEvent[]) {
 
   const actualDate = new Date();
 
-  let actualSemester = {
+  const actualSemester = {
     start: actualDate.getMonth() > 6 ? middleOfYear : startOfYear,
     end: actualDate.getMonth() > 6 ? endOfYear : middleOfYear,
   };
@@ -63,7 +62,7 @@ export async function downloadIcsFromEvents(events: ICalendarEvent[]) {
     for (let i = 0; i < events.length; i++) {
       console.log(events[i].daysOfWeek[0]);
       console.log(events[i]);
-      let eventStartTime = new Date(
+      const eventStartTime = new Date(
         actualSemester.start.getFullYear(),
         actualSemester.start.getMonth(),
         getNearestDay(
@@ -74,7 +73,7 @@ export async function downloadIcsFromEvents(events: ICalendarEvent[]) {
         parseInt(events[i].startTime!.split(":")[1])
       );
 
-      let eventEndTime = new Date(
+      const eventEndTime = new Date(
         actualSemester.start.getFullYear(),
         actualSemester.start.getMonth(),
         getNearestDay(

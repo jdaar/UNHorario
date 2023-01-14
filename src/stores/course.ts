@@ -22,7 +22,7 @@ export const useCourseStore = defineStore("course", () => {
    * @since 0.0.1
    */
   function addCourse(course: Course) {
-    let actualCourse = courses.value.find((c) => c.code === course.code);
+    const actualCourse = courses.value.find((c) => c.code === course.code);
     if (!actualCourse) {
       courses.value.push(course);
     }

@@ -24,18 +24,22 @@ export const useFeedbackStore = defineStore("feedback", () => {
    * @since 0.0.4
    */
   async function sendFeedback(value: boolean, teacher_name: string) {
-    if (!feedback.value.find((f) => f.teacher_name === teacher_name && f.voted)) {
-        await uploadRating(value, teacher_name)
-        getRatings(teacher_name).then((ratings) => {
-            const actualRecord = feedback.value.findIndex((f) => f.teacher_name === teacher_name)
-            if (actualRecord !== -1)
-                feedback.value[actualRecord] = {
-                    value,
-                    teacher_name,
-                    rating: ratings?.reduce((a, b) => a + (b ? 1 : -1), 0) ?? 0,
-                    voted: true
-                };
-        });
+    if (
+      !feedback.value.find((f) => f.teacher_name === teacher_name && f.voted)
+    ) {
+      await uploadRating(value, teacher_name);
+      getRatings(teacher_name).then((ratings) => {
+        const actualRecord = feedback.value.findIndex(
+          (f) => f.teacher_name === teacher_name
+        );
+        if (actualRecord !== -1)
+          feedback.value[actualRecord] = {
+            value,
+            teacher_name,
+            rating: ratings?.reduce((a, b) => a + (b ? 1 : -1), 0) ?? 0,
+            voted: true,
+          };
+      });
     }
   }
 
@@ -45,20 +49,22 @@ export const useFeedbackStore = defineStore("feedback", () => {
    * @since 0.0.4
    */
   function populateFeedback(teacher_name: string) {
-    const actualRecord = feedback.value.filter((f) => f.teacher_name === teacher_name)
+    const actualRecord = feedback.value.filter(
+      (f) => f.teacher_name === teacher_name
+    );
     getRatings(teacher_name).then((ratings) => {
-        feedback.value.push({
-            value: actualRecord[0]?.value ?? false,
-            teacher_name,
-            rating: ratings?.reduce((a, b) => a + (b ? 1 : -1), 0) ?? 0,
-            voted: actualRecord[0]?.voted ?? false
-        });
+      feedback.value.push({
+        value: actualRecord[0]?.value ?? false,
+        teacher_name,
+        rating: ratings?.reduce((a, b) => a + (b ? 1 : -1), 0) ?? 0,
+        voted: actualRecord[0]?.voted ?? false,
+      });
     });
   }
 
   return {
     feedback,
     sendFeedback,
-    populateFeedback
+    populateFeedback,
   };
 });

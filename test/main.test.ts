@@ -1,9 +1,9 @@
 import { expect, test } from "vitest";
-import { courseGenerator } from '../src/lib/generator'
+import { courseGenerator } from "../src/lib/generator";
 
 const EXPECTED_OUTPUTS = [
-    {
-        "string": `Logo UniversidadPORTAL DE SERVICIOS ACADÉMICOS
+  {
+    string: `Logo UniversidadPORTAL DE SERVICIOS ACADÉMICOS
 testUser
 	Datos personales
  	
@@ -58,50 +58,49 @@ Volver
  	 	 
 Universidad Nacional de Colombia--Dirección Nacional de Información Académica
 Portal de Servicios Académicos (V. 4.3.20) |UXXI Todos los derechos reservados`,
-        "data":
+    data: {
+      name: "SISTEMAS OPERATIVOS",
+      code: "3007867",
+      credits: 3,
+      type: "Obligatoria",
+      groups: [
         {
-            "name": "SISTEMAS OPERATIVOS",
-            "code": "3007867",
-            "credits": 3,
-            "type": "Obligatoria",
-            "groups": [
-                {
-                    "name": "(1) Grupo 1",
-                    "teacher": " Juan Felipe Muñoz Fernandez",
-                    "number": 1,
-                    "availablePlaces": 2,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                }
-            ],
-            "selectedGroup": 1,
-            "included": true
+          name: "(1) Grupo 1",
+          teacher: " Juan Felipe Muñoz Fernandez",
+          number: 1,
+          availablePlaces: 2,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+          ],
         },
+      ],
+      selectedGroup: 1,
+      included: true,
     },
-    {
-        "string": `Carga Terminada
+  },
+  {
+    string: `Carga Terminada
 Logo UniversidadPORTAL DE SERVICIOS ACADÉMICOS
 testUser
 	Datos personales
@@ -664,1209 +663,1209 @@ Volver
  	 	 
 Universidad Nacional de Colombia--Dirección Nacional de Información Académica
 Portal de Servicios Académicos (V. 4.3.20) |UXXI Todos los derechos reservados`,
-        "data": {
-            "name": "Fundamentos de programación",
-            "code": "3010435",
-            "credits": 3,
-            "type": "Obligatoria",
-            "groups": [
-                {
-                    "name": "(1) Grupo 1 MIXTA",
-                    "teacher": " Sebastian Gomez Jaramillo",
-                    "number": 1,
-                    "availablePlaces": 3,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(10) Grupo 10 MIXTA",
-                    "teacher": " Juan Felipe Muñoz Fernandez",
-                    "number": 2,
-                    "availablePlaces": 4,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 6,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 8,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(11) Grupo 11 MIXTA",
-                    "teacher": " Juan Felipe Muñoz Fernandez",
-                    "number": 3,
-                    "availablePlaces": 2,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(12) Grupo 12 MIXTA",
-                    "teacher": " Juan Felipe Muñoz Fernandez",
-                    "number": 4,
-                    "availablePlaces": 0,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(13) Grupo 13 MIXTA",
-                    "teacher": " Alberto Alejandro Piedrahita Ospina",
-                    "number": 5,
-                    "availablePlaces": 5,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(14) Grupo 14 MIXTA",
-                    "teacher": " Alberto Alejandro Piedrahita Ospina",
-                    "number": 6,
-                    "availablePlaces": 3,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(15) Grupo 15 MIXTA",
-                    "teacher": " Alberto Alejandro Piedrahita Ospina",
-                    "number": 7,
-                    "availablePlaces": 1,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(16) Grupo 16 MIXTA",
-                    "teacher": " Alberto Alejandro Piedrahita Ospina",
-                    "number": 8,
-                    "availablePlaces": 6,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 6,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 8,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(17) Grupo 17 MIXTA",
-                    "teacher": " Alberto Alejandro Piedrahita Ospina",
-                    "number": 9,
-                    "availablePlaces": 2,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(18) Grupo 18 MIXTA",
-                    "teacher": " Alberto Alejandro Piedrahita Ospina",
-                    "number": 10,
-                    "availablePlaces": 2,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(19) Grupo 19 MIXTA",
-                    "teacher": " Miguel De Jesus Pinto Herrera",
-                    "number": 11,
-                    "availablePlaces": 3,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(2) Grupo 2 MIXTA",
-                    "teacher": " Sebastian Gomez Jaramillo",
-                    "number": 12,
-                    "availablePlaces": 1,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(20) Grupo 20 MIXTA",
-                    "teacher": " Miguel De Jesus Pinto Herrera",
-                    "number": 13,
-                    "availablePlaces": 5,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(21) Grupo 21 MIXTA",
-                    "teacher": " Miguel De Jesus Pinto Herrera",
-                    "number": 14,
-                    "availablePlaces": 4,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(22) Grupo 22 MIXTA",
-                    "teacher": " Miguel De Jesus Pinto Herrera",
-                    "number": 15,
-                    "availablePlaces": 5,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(23) Grupo 23 MIXTA",
-                    "teacher": " Miguel De Jesus Pinto Herrera",
-                    "number": 16,
-                    "availablePlaces": 3,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(24) Grupo 24 MIXTA",
-                    "teacher": " Miguel De Jesus Pinto Herrera",
-                    "number": 17,
-                    "availablePlaces": 6,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(25) Grupo 25 MIXTA",
-                    "teacher": " Nelson David Zapata Osorio",
-                    "number": 18,
-                    "availablePlaces": 0,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(26) Grupo 26 MIXTA",
-                    "teacher": " Nelson David Zapata Osorio",
-                    "number": 19,
-                    "availablePlaces": 2,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(27) Grupo 27 MIXTA",
-                    "teacher": " Nelson David Zapata Osorio",
-                    "number": 20,
-                    "availablePlaces": 6,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(28) Grupo 28 MIXTA",
-                    "teacher": " Nelson David Zapata Osorio",
-                    "number": 21,
-                    "availablePlaces": 1,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(29) Grupo 29 MIXTA",
-                    "teacher": " Nelson David Zapata Osorio",
-                    "number": 22,
-                    "availablePlaces": 6,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(3) Grupo 3 MIXTA",
-                    "teacher": " Sebastian Gomez Jaramillo",
-                    "number": 23,
-                    "availablePlaces": 5,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(30) Grupo 30 MIXTA",
-                    "teacher": " Nelson David Zapata Osorio",
-                    "number": 24,
-                    "availablePlaces": 4,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(32) Grupo 32 MIXTA",
-                    "teacher": " Nelson David Zapata Osorio",
-                    "number": 25,
-                    "availablePlaces": 4,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 18,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 20,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 18,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 20,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(33) Grupo 33 MIXTA",
-                    "teacher": " Nelson David Zapata Osorio",
-                    "number": 26,
-                    "availablePlaces": 0,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 18,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 20,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "4",
-                            "start": {
-                                "hours": 18,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 20,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(34) Grupo 34 MIXTA",
-                    "teacher": " Nelson David Zapata Osorio",
-                    "number": 27,
-                    "availablePlaces": 14,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 18,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 20,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 18,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 20,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(4) Grupo 4 MIXTA",
-                    "teacher": " Sebastian Gomez Jaramillo",
-                    "number": 28,
-                    "availablePlaces": 4,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 6,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 8,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(5) Grupo 5 MIXTA",
-                    "teacher": " Sebastian Gomez Jaramillo",
-                    "number": 29,
-                    "availablePlaces": 0,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(6) Grupo 6 MIXTA",
-                    "teacher": " Sebastian Gomez Jaramillo",
-                    "number": 30,
-                    "availablePlaces": 1,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 10,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 10,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 12,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(7) Grupo 7 MIXTA",
-                    "teacher": " Juan Felipe Muñoz Fernandez",
-                    "number": 31,
-                    "availablePlaces": 3,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(8) Grupo 8 MIXTA",
-                    "teacher": " Juan Felipe Muñoz Fernandez",
-                    "number": 32,
-                    "availablePlaces": 1,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(9) Grupo 9 MIXTA",
-                    "teacher": " Juan Felipe Muñoz Fernandez",
-                    "number": 33,
-                    "availablePlaces": 3,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 12,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 14,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 16,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 18,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(CARI-01) Peama - Caribe Grupo 01",
-                    "teacher": " Johannie Lucia James Cruz",
-                    "number": 34,
-                    "availablePlaces": 20,
-                    "lectures": [
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 11,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 11,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(ORIN-01) Peama - Orinoquia Grupo 01 (Telepresencial)",
-                    "teacher": " Oswaldo Rojas Camacho",
-                    "number": 35,
-                    "availablePlaces": 5,
-                    "lectures": [
-                        {
-                            "day": "1",
-                            "start": {
-                                "hours": 11,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 11,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(TUMA-01) Peama - Tumaco Grupo 01",
-                    "teacher": " Edgar Joany Vargas Florez",
-                    "number": 36,
-                    "availablePlaces": 6,
-                    "lectures": [
-                        {
-                            "day": "1",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 30
-                            }
-                        },
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 30
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "1",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 30
-                            }
-                        },
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 30
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "1",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 30
-                            }
-                        },
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 30
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "1",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 30
-                            }
-                        },
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 30
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 8,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 13,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                }
-            ],
-            "selectedGroup": 1,
-            "included": true
-        }
+    data: {
+      name: "Fundamentos de programación",
+      code: "3010435",
+      credits: 3,
+      type: "Obligatoria",
+      groups: [
+        {
+          name: "(1) Grupo 1 MIXTA",
+          teacher: " Sebastian Gomez Jaramillo",
+          number: 1,
+          availablePlaces: 3,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+            {
+              day: "2",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(10) Grupo 10 MIXTA",
+          teacher: " Juan Felipe Muñoz Fernandez",
+          number: 2,
+          availablePlaces: 4,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 6,
+                minutes: 0,
+              },
+              end: {
+                hours: 8,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(11) Grupo 11 MIXTA",
+          teacher: " Juan Felipe Muñoz Fernandez",
+          number: 3,
+          availablePlaces: 2,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(12) Grupo 12 MIXTA",
+          teacher: " Juan Felipe Muñoz Fernandez",
+          number: 4,
+          availablePlaces: 0,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(13) Grupo 13 MIXTA",
+          teacher: " Alberto Alejandro Piedrahita Ospina",
+          number: 5,
+          availablePlaces: 5,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(14) Grupo 14 MIXTA",
+          teacher: " Alberto Alejandro Piedrahita Ospina",
+          number: 6,
+          availablePlaces: 3,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(15) Grupo 15 MIXTA",
+          teacher: " Alberto Alejandro Piedrahita Ospina",
+          number: 7,
+          availablePlaces: 1,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(16) Grupo 16 MIXTA",
+          teacher: " Alberto Alejandro Piedrahita Ospina",
+          number: 8,
+          availablePlaces: 6,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 6,
+                minutes: 0,
+              },
+              end: {
+                hours: 8,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(17) Grupo 17 MIXTA",
+          teacher: " Alberto Alejandro Piedrahita Ospina",
+          number: 9,
+          availablePlaces: 2,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(18) Grupo 18 MIXTA",
+          teacher: " Alberto Alejandro Piedrahita Ospina",
+          number: 10,
+          availablePlaces: 2,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(19) Grupo 19 MIXTA",
+          teacher: " Miguel De Jesus Pinto Herrera",
+          number: 11,
+          availablePlaces: 3,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(2) Grupo 2 MIXTA",
+          teacher: " Sebastian Gomez Jaramillo",
+          number: 12,
+          availablePlaces: 1,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+            {
+              day: "2",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(20) Grupo 20 MIXTA",
+          teacher: " Miguel De Jesus Pinto Herrera",
+          number: 13,
+          availablePlaces: 5,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(21) Grupo 21 MIXTA",
+          teacher: " Miguel De Jesus Pinto Herrera",
+          number: 14,
+          availablePlaces: 4,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(22) Grupo 22 MIXTA",
+          teacher: " Miguel De Jesus Pinto Herrera",
+          number: 15,
+          availablePlaces: 5,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(23) Grupo 23 MIXTA",
+          teacher: " Miguel De Jesus Pinto Herrera",
+          number: 16,
+          availablePlaces: 3,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(24) Grupo 24 MIXTA",
+          teacher: " Miguel De Jesus Pinto Herrera",
+          number: 17,
+          availablePlaces: 6,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(25) Grupo 25 MIXTA",
+          teacher: " Nelson David Zapata Osorio",
+          number: 18,
+          availablePlaces: 0,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(26) Grupo 26 MIXTA",
+          teacher: " Nelson David Zapata Osorio",
+          number: 19,
+          availablePlaces: 2,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(27) Grupo 27 MIXTA",
+          teacher: " Nelson David Zapata Osorio",
+          number: 20,
+          availablePlaces: 6,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(28) Grupo 28 MIXTA",
+          teacher: " Nelson David Zapata Osorio",
+          number: 21,
+          availablePlaces: 1,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(29) Grupo 29 MIXTA",
+          teacher: " Nelson David Zapata Osorio",
+          number: 22,
+          availablePlaces: 6,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(3) Grupo 3 MIXTA",
+          teacher: " Sebastian Gomez Jaramillo",
+          number: 23,
+          availablePlaces: 5,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+            {
+              day: "2",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(30) Grupo 30 MIXTA",
+          teacher: " Nelson David Zapata Osorio",
+          number: 24,
+          availablePlaces: 4,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(32) Grupo 32 MIXTA",
+          teacher: " Nelson David Zapata Osorio",
+          number: 25,
+          availablePlaces: 4,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 18,
+                minutes: 0,
+              },
+              end: {
+                hours: 20,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 18,
+                minutes: 0,
+              },
+              end: {
+                hours: 20,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(33) Grupo 33 MIXTA",
+          teacher: " Nelson David Zapata Osorio",
+          number: 26,
+          availablePlaces: 0,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 18,
+                minutes: 0,
+              },
+              end: {
+                hours: 20,
+                minutes: 0,
+              },
+            },
+            {
+              day: "4",
+              start: {
+                hours: 18,
+                minutes: 0,
+              },
+              end: {
+                hours: 20,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(34) Grupo 34 MIXTA",
+          teacher: " Nelson David Zapata Osorio",
+          number: 27,
+          availablePlaces: 14,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 18,
+                minutes: 0,
+              },
+              end: {
+                hours: 20,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 18,
+                minutes: 0,
+              },
+              end: {
+                hours: 20,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(4) Grupo 4 MIXTA",
+          teacher: " Sebastian Gomez Jaramillo",
+          number: 28,
+          availablePlaces: 4,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 6,
+                minutes: 0,
+              },
+              end: {
+                hours: 8,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(5) Grupo 5 MIXTA",
+          teacher: " Sebastian Gomez Jaramillo",
+          number: 29,
+          availablePlaces: 0,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(6) Grupo 6 MIXTA",
+          teacher: " Sebastian Gomez Jaramillo",
+          number: 30,
+          availablePlaces: 1,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 10,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 10,
+                minutes: 0,
+              },
+              end: {
+                hours: 12,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(7) Grupo 7 MIXTA",
+          teacher: " Juan Felipe Muñoz Fernandez",
+          number: 31,
+          availablePlaces: 3,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(8) Grupo 8 MIXTA",
+          teacher: " Juan Felipe Muñoz Fernandez",
+          number: 32,
+          availablePlaces: 1,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(9) Grupo 9 MIXTA",
+          teacher: " Juan Felipe Muñoz Fernandez",
+          number: 33,
+          availablePlaces: 3,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 12,
+                minutes: 0,
+              },
+              end: {
+                hours: 14,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 16,
+                minutes: 0,
+              },
+              end: {
+                hours: 18,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(CARI-01) Peama - Caribe Grupo 01",
+          teacher: " Johannie Lucia James Cruz",
+          number: 34,
+          availablePlaces: 20,
+          lectures: [
+            {
+              day: "3",
+              start: {
+                hours: 11,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 11,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(ORIN-01) Peama - Orinoquia Grupo 01 (Telepresencial)",
+          teacher: " Oswaldo Rojas Camacho",
+          number: 35,
+          availablePlaces: 5,
+          lectures: [
+            {
+              day: "1",
+              start: {
+                hours: 11,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 11,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(TUMA-01) Peama - Tumaco Grupo 01",
+          teacher: " Edgar Joany Vargas Florez",
+          number: 36,
+          availablePlaces: 6,
+          lectures: [
+            {
+              day: "1",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 30,
+              },
+            },
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 30,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 0,
+              },
+            },
+            {
+              day: "1",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 30,
+              },
+            },
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 30,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 0,
+              },
+            },
+            {
+              day: "1",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 30,
+              },
+            },
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 30,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 0,
+              },
+            },
+            {
+              day: "1",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 30,
+              },
+            },
+            {
+              day: "2",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 30,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 8,
+                minutes: 0,
+              },
+              end: {
+                hours: 13,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+      ],
+      selectedGroup: 1,
+      included: true,
     },
-    {
-        "string": `Logo UniversidadPORTAL DE SERVICIOS ACADÉMICOS
+  },
+  {
+    string: `Logo UniversidadPORTAL DE SERVICIOS ACADÉMICOS
 testUser
 	Datos personales
  	
@@ -1936,81 +1935,83 @@ Volver
  	 	 
 Universidad Nacional de Colombia--Dirección Nacional de Información Académica
 Portal de Servicios Académicos (V. 4.3.20) |UXXI Todos los derechos reservados`,
-        "data": {
-            "name": "SIMULACIÓN DE SISTEMAS",
-            "code": "3007331",
-            "credits": 3,
-            "type": "Obligatoria",
-            "groups": [
-                {
-                    "name": "(1) Grupo 1",
-                    "teacher": " Yris Olaya Morales",
-                    "number": 1,
-                    "availablePlaces": 1,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "3",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "(2) Grupo 2",
-                    "teacher": " Yris Olaya Morales",
-                    "number": 2,
-                    "availablePlaces": 2,
-                    "lectures": [
-                        {
-                            "day": "2",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        },
-                        {
-                            "day": "5",
-                            "start": {
-                                "hours": 14,
-                                "minutes": 0
-                            },
-                            "end": {
-                                "hours": 16,
-                                "minutes": 0
-                            }
-                        }
-                    ]
-                }
-            ],
-            "selectedGroup": 1,
-            "included": true
-        }
+    data: {
+      name: "SIMULACIÓN DE SISTEMAS",
+      code: "3007331",
+      credits: 3,
+      type: "Obligatoria",
+      groups: [
+        {
+          name: "(1) Grupo 1",
+          teacher: " Yris Olaya Morales",
+          number: 1,
+          availablePlaces: 1,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+            {
+              day: "3",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+        {
+          name: "(2) Grupo 2",
+          teacher: " Yris Olaya Morales",
+          number: 2,
+          availablePlaces: 2,
+          lectures: [
+            {
+              day: "2",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+            {
+              day: "5",
+              start: {
+                hours: 14,
+                minutes: 0,
+              },
+              end: {
+                hours: 16,
+                minutes: 0,
+              },
+            },
+          ],
+        },
+      ],
+      selectedGroup: 1,
+      included: true,
     },
-]
+  },
+];
 
 for (let i = 0; i < EXPECTED_OUTPUTS.length; i++) {
-    test(`It should generate course #${i} correctly`, () => {
-            expect(JSON.stringify(courseGenerator(EXPECTED_OUTPUTS[i].string))).toMatchObject(JSON.stringify(EXPECTED_OUTPUTS[i].data))
-    })
+  test(`It should generate course #${i} correctly`, () => {
+    expect(
+      JSON.stringify(courseGenerator(EXPECTED_OUTPUTS[i].string))
+    ).toMatchObject(JSON.stringify(EXPECTED_OUTPUTS[i].data));
+  });
 }

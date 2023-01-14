@@ -66,4 +66,4 @@ export type Feedback = {
   voted: boolean;
   rating: number;
   teacher_name: string;
-}  
+};

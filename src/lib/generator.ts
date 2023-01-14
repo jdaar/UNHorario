@@ -14,11 +14,11 @@ import {
  * @returns The string representation of the day as date
  */
 export function hoursToDateString(hours: Hours) {
-  let dayHours = hours.hours.toLocaleString("en-US", {
+  const dayHours = hours.hours.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
-  let dayMinutes = hours.minutes.toLocaleString("en-US", {
+  const dayMinutes = hours.minutes.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
@@ -77,8 +77,8 @@ export function lectureGenerator(values: string): Lecture[] {
   const returnValue: Lecture[] = values
     .replace("Horarios/Aula: No informado", "")
     .split("Duración")[0]
-    .split('\n')
-    .filter(v => v.match(/.* de [0-9]{2}:[0-9]{2} a [0-9]{2}:[0-9]{2}/i))
+    .split("\n")
+    .filter((v) => v.match(/.* de [0-9]{2}:[0-9]{2} a [0-9]{2}:[0-9]{2}/i))
     .map((value) => ({
       day: asDay(value.split(" de ")[0]),
       start: asHour(value.split(" de ")[1].split(" a ")[0]),
@@ -97,25 +97,31 @@ export function lectureGenerator(values: string): Lecture[] {
 export function groupGenerator(values: string): Group[] {
   const groupRegex = /\((.*-)?[0-9]*\).*Grupo [0-9]{1,2}.*/i;
   const groupNames = values
-    .split('\n')
-    .map(v => v.match(groupRegex))
-    .filter(v => v != null)
-    .map(v => v![0])
+    .split("\n")
+    .map((v) => v.match(groupRegex))
+    .filter((v) => v != null)
+    .map((v) => v![0]);
   const relevantData = values
     .split(groupRegex)
-    .filter(v => v != undefined && v.length > 10)
+    .filter((v) => v != undefined && v.length > 10)
     .map((value) => value.trim())
     .filter((value) => value !== "");
-  let returnValue = [];
+  const returnValue = [];
 
   for (let i = 0; i < relevantData.length; i++) {
-    let actualData = relevantData[i].split("Volver")[0].split("\n");
-    let group: Group = {
+    const actualData = relevantData[i].split("Volver")[0].split("\n");
+    const group: Group = {
       name: groupNames[i],
       teacher: actualData[0].split(":")[1].replace(".", ""),
       number: i + 1,
-      availablePlaces: parseInt(actualData.filter(v => v.match(/Cupos disponibles: [0-9]+/i))[0].split(': ')[1]),
-      lectures: lectureGenerator(actualData.filter((_v, i) => i > 2).join('\n')),
+      availablePlaces: parseInt(
+        actualData
+          .filter((v) => v.match(/Cupos disponibles: [0-9]+/i))[0]
+          .split(": ")[1]
+      ),
+      lectures: lectureGenerator(
+        actualData.filter((_v, i) => i > 2).join("\n")
+      ),
     };
     returnValue.push(group);
   }

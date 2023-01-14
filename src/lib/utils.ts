@@ -4,7 +4,7 @@
  * @internal
  */
 export function getRandomColor(): string {
-    const COLORS = [
+  const COLORS = [
     "#f94144", // red
     "#f3722c", // orange
     "#f8961e", // yellow
@@ -15,6 +15,6 @@ export function getRandomColor(): string {
     "#4d908e", // blue-green
     "#577590", // blue
     "#277da1", // blue-purple
-    ];
+  ];
   return COLORS[Math.floor(Math.random() * COLORS.length)];
 }

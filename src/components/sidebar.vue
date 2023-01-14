@@ -5,7 +5,6 @@ import { downloadCourses } from "@/lib/save";
 import { getRandomColor } from "@/lib/utils";
 import { useCourseStore } from "@/stores/course";
 import type { Course } from "@/stores/types";
-import type { EventInput } from "@fullcalendar/common";
 import { computed } from "@vue/reactivity";
 import course from "./course.vue";
 
@@ -127,5 +126,11 @@ ul {
 
 .mt {
   margin-top: 3em !important;
+}
+
+@media (max-width: 1024px) {
+    .course-container {
+        margin-top: 3em
+    }
 }
 </style>

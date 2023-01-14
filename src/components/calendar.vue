@@ -16,7 +16,7 @@
      */
     const events = computed(() =>
         courses.courses
-            .filter((course) => course.included)
+            .filter((course) => course.included && course.selectedGroup)
             .map((course: Course) =>
                 course.groups[course.selectedGroup! - 1].lectures.map((lecture) => ({
                     title: course.name,
@@ -54,7 +54,7 @@
 <style scoped>
     .calendar {
         height: 50em;
-        min-width: 70%;
+        width: 100%;
     }
 
     .calendar > .fc {

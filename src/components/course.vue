@@ -5,25 +5,31 @@ import { useFeedbackStore } from "@/stores/feedback";
 import { watch } from "vue";
 import { computed } from "@vue/reactivity";
 import textArea from "@/components/text-area.vue";
+import { uploadComment } from "@/lib/firestore";
 
 const courses = useCourseStore();
 const feedbacks = useFeedbackStore();
 
-const teacher = computed(() => course.groups[course.selectedGroup - 1].teacher);
+const { course = {} as Course } = defineProps<{
+    course: Course;
+}>()
+
+
+const teacher = computed(() => course.groups[course.selectedGroup ?? 1 - 1].teacher);
 
 watch(teacher, (newValue) => {
-    feedbacks.populateFeedback(newValue);
+    feedbacks.populateFeedback(newValue!);
 })
 
 const teacherRating = computed(() =>
     feedbacks.feedback.filter(
-        (feedback) => feedback.teacher_name == teacher.value
+        (feedback) => feedback.teacher_name == teacher.value!
     )[0]?.rating ?? 'Selecciona para ver'
 );
 
-const { course = {} as Course } = defineProps<{
-    course: Course;
-}>()
+async function addComment(content: string) {
+    await uploadComment(teacher.value!, content)
+}
 </script>
 
 <template>
@@ -68,24 +74,24 @@ const { course = {} as Course } = defineProps<{
                 </h5>
                 <h5>¿Como calificarias a este docente?</h5>
                 <div class="grid">
-                    <button v-on:click="feedbacks.sendFeedback(true, course.groups[course.selectedGroup - 1].teacher)">
+                    <button v-on:click="feedbacks.sendFeedback(true, course.groups[course.selectedGroup ?? 0 - 1].teacher)">
                         <b>
                             +
                         </b>
                     </button>
-                    <button v-on:click="feedbacks.sendFeedback(false, course.groups[course.selectedGroup - 1].teacher)">
+                    <button v-on:click="feedbacks.sendFeedback(false, course.groups[course.selectedGroup ?? 0 - 1].teacher)">
                         <b>
                             -
                         </b>
                     </button>
                 </div>
                 <h5>¿Deseas compartir tu opinion de este docente?</h5>
-                <textArea :callback="() => {}"></textArea>
+                <textArea :callback="addComment">Publicar</textArea>
             </div>
             <label for="switch" style="display: flex; align-items: center">
                 <input type="checkbox" id="switch" name="switch" role="switch" class="group-selector"
                     :checked="course.included" v-on:input="courses.switchIncludeCourse(course.code)" />
-                <h5 style="margin: 0">Incluir</h5>
+                <h5 style="margin: 0">Incluir en el archivo</h5>
             </label>
         </header>
     </article>

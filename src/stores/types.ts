@@ -35,7 +35,7 @@ export type Course = {
   credits: number;
   type: CourseType;
   groups: Group[];
-  selectedGroup: number;
+  selectedGroup?: number;
   included: boolean;
 };
 

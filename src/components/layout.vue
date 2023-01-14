@@ -31,7 +31,7 @@ function addCourseToCalendar(values: string) {
                         <slot></slot>
                     </div>
                     <footer>
-                        <textArea :callback=addCourseToCalendar></textArea>
+                        <textArea :callback=addCourseToCalendar>Añadir curso</textArea>
                     </footer>
                 </article>
             </main>
@@ -101,8 +101,8 @@ article {
 
 @media (max-width: 1024px) {
     .parent {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
         max-height: 150em;
         grid-column-gap: 0px;
         grid-row-gap: 15px;

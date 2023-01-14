@@ -141,7 +141,6 @@ export function courseGenerator(values: string): Course {
         ? CourseType.freeChoice
         : CourseType.obligatory,
     groups: groupGenerator(relevantData.split(/CLASE .* \(.*\)/)[1]),
-    selectedGroup: 1,
     included: true,
   };
 

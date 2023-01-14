@@ -24,7 +24,16 @@ function addCourseToCalendar(values: string) {
           <ul>
             <li>
               <a href="https://github.com/jdaar/UNHorario/blob/master/USAGE.md"
-                >¿Necesitas ayuda?</a
+                >Instrucciones de uso</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/jdaar/UNHorario/blob/master/IMPORT.md"
+                >Instrucciones para importar en Google </a>
+            </li>
+            <li class="alertbud">
+              <a href="https://alertbud.co" class="alertbud"
+                >Prueba AlertBud</a
               >
             </li>
           </ul>
@@ -102,6 +111,10 @@ article {
   font-size: larger;
 }
 
+.alertbud {
+    font-weight: bold;
+}
+
 @media (max-width: 1024px) {
   .parent {
     display: flex;
@@ -123,5 +136,6 @@ article {
     transform: scale(0.9);
     margin-top: -3em;
   }
+
 }
 </style>

@@ -24,17 +24,15 @@ function addCourseToCalendar(values: string) {
           <ul>
             <li>
               <a href="https://github.com/jdaar/UNHorario/blob/master/USAGE.md"
-                >Instrucciones de uso</a
-              >
+                >Instrucciones de uso</a>
             </li>
             <li>
               <a href="https://github.com/jdaar/UNHorario/blob/master/IMPORT.md"
-                >Instrucciones para importar en Google </a>
+                >Instrucciones para importar en Google</a>
             </li>
             <li class="alertbud">
               <a href="https://alertbud.co" class="alertbud"
-                >Prueba AlertBud</a
-              >
+                >Prueba AlertBud</a>
             </li>
           </ul>
         </header>
@@ -100,6 +98,7 @@ article {
 .header > ul > li {
   display: inline-block;
   margin-left: 1em;
+  padding: 1em
 }
 
 .header > ul > li > a {

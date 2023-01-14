@@ -48,6 +48,16 @@ const { course = {} as Course } = defineProps<{
                     </li>
                 </ul>
             </details>
+            <h5>
+                Del componente <b>{{ course.type }}</b> con
+                <b>{{ course.credits }}</b> creditos
+            </h5>
+            <h5>
+                <b>{{
+                    course.selectedGroup ? course.groups.filter(v => v.number ==
+                        course.selectedGroup)[0].availablePlaces : 0
+                }}</b> cupos disponibles
+            </h5>
             <div v-if="course.selectedGroup">
                 <h5>
                     Dictada por
@@ -56,6 +66,7 @@ const { course = {} as Course } = defineProps<{
                     }}</b> con una calificacion de {{teacherRating}}
 
                 </h5>
+                <h5>¿Como calificarias a este docente?</h5>
                 <div class="grid">
                     <button v-on:click="feedbacks.sendFeedback(true, course.groups[course.selectedGroup - 1].teacher)">
                         <b>
@@ -68,19 +79,9 @@ const { course = {} as Course } = defineProps<{
                         </b>
                     </button>
                 </div>
+                <h5>¿Deseas compartir tu opinion de este docente?</h5>
                 <textArea :callback="() => {}"></textArea>
-                
             </div>
-            <h5>
-                Del componente <b>{{ course.type }}</b> con
-                <b>{{ course.credits }}</b> creditos
-            </h5>
-            <h5>
-                <b>{{
-                    course.selectedGroup ? course.groups.filter(v => v.number ==
-                        course.selectedGroup)[0].availablePlaces : 0
-                }}</b> cupos disponibles
-            </h5>
             <label for="switch" style="display: flex; align-items: center">
                 <input type="checkbox" id="switch" name="switch" role="switch" class="group-selector"
                     :checked="course.included" v-on:input="courses.switchIncludeCourse(course.code)" />

@@ -98,12 +98,18 @@ article {
 .header > ul > li {
   display: inline-block;
   margin-left: 1em;
-  padding: 1em
+  padding: 1em;
 }
 
 .header > ul > li > a {
   text-decoration: none;
   font-size: larger;
+  color: #507898
+}
+.header > ul > li > a:hover {
+  text-decoration: none;
+  font-size: larger;
+  color: #f4511e
 }
 
 .credits {

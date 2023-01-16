@@ -41,7 +41,7 @@ function addCourseToCalendar(values: string) {
             <slot></slot>
           </div>
           <footer>
-            <text-area :callback="addCourseToCalendar">Añadir curso</text-area>
+            <text-area label="Contenido del curso" :callback="addCourseToCalendar">Añadir curso</text-area>
           </footer>
         </article>
       </main>
@@ -104,7 +104,7 @@ article {
 .header > ul > li > a {
   text-decoration: none;
   font-size: larger;
-  color: #507898
+  color: #fff
 }
 .header > ul > li > a:hover {
   text-decoration: none;

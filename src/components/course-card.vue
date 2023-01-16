@@ -108,7 +108,7 @@ async function addComment(content: string) {
           </button>
         </div>
         <h5>¿Deseas compartir tu opinion de este docente?</h5>
-        <TextArea :callback="addComment">Publicar</TextArea>
+        <text-area label="Comentario" :callback="addComment">Publicar</text-area>
       </div>
       <label for="switch" style="display: flex; align-items: center">
         <input

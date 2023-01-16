@@ -7,6 +7,7 @@ type Callback<T> = (value: T) => void; // eslint-disable-line no-unused-vars
 
 const props = defineProps<{
   callback: Callback<string>;
+  label: string;
 }>();
 
 const action = () => {
@@ -17,8 +18,8 @@ const action = () => {
 
 <template>
   <div class="grid">
-    <textarea v-model="textAreaValue" style="resize: none" />
-    <button v-on:click="action">
+    <textarea v-model="textAreaValue" :label="label" style="resize: none" />
+    <button type="button" v-on:click="action">
       <slot></slot>
     </button>
   </div>

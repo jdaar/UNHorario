@@ -70,11 +70,11 @@ function uploadCourses(event: Event) {
 
 <template>
   <div class="course-container">
+    <button v-on:click="downloadIcsFromEvents(events)">Descargar ICS</button>
     <label class="upload-btn">
       <input type="file" class="" @change="uploadCourses" />
       Cargar UNHorario
     </label>
-    <button v-on:click="downloadIcsFromEvents(events)">Descargar ICS</button>
     <button v-on:click="downloadCourses(courses.courses)">
       Descargar UNHorario
     </button>
@@ -101,6 +101,7 @@ input[type="file"] {
   text-align: center;
   padding: 0.75em;
   border: none;
+  font-weight: 600;
   transition: 0.3s;
 }
 

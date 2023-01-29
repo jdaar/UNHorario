@@ -23,7 +23,7 @@ function addCourseToCalendar(values: string) {
           <img src="/logo.svg" alt="UNHorario" />
           <ul>
             <li>
-              
+              <img src="https://shields.io/github/v/release/jdaar/UNHorario?display_name=tag&sort=semver" alt="version"/>
             </li>
             <li>
               <a href="https://github.com/jdaar/UNHorario/blob/master/USAGE.md"
@@ -108,6 +108,11 @@ article {
   text-decoration: none;
   font-size: larger;
   color: #fff
+}
+
+.header > ul > li > img {
+  padding: 1em;
+  transform: scale(1.5);
 }
 .header > ul > li > a:hover {
   text-decoration: none;

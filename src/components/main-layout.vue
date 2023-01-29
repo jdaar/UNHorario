@@ -23,19 +23,23 @@ function addCourseToCalendar(values: string) {
           <img src="/logo.svg" alt="UNHorario" />
           <ul>
             <li>
-              <img src="https://shields.io/github/v/release/jdaar/UNHorario?display_name=tag&sort=semver" alt="version"/>
+              <img
+                src="https://shields.io/github/v/release/jdaar/UNHorario?display_name=tag&sort=semver"
+                alt="version"
+              />
             </li>
             <li>
               <a href="https://github.com/jdaar/UNHorario/blob/master/USAGE.md"
-                >Instrucciones de uso</a>
+                >Instrucciones de uso</a
+              >
             </li>
             <li>
               <a href="https://github.com/jdaar/UNHorario/blob/master/IMPORT.md"
-                >Instrucciones para importar en Google</a>
+                >Instrucciones para importar en Google</a
+              >
             </li>
             <li class="alertbud">
-              <a href="https://alertbud.co" class="alertbud"
-                >Prueba AlertBud</a>
+              <a href="https://alertbud.co" class="alertbud">Prueba AlertBud</a>
             </li>
           </ul>
         </header>
@@ -44,7 +48,11 @@ function addCourseToCalendar(values: string) {
             <slot></slot>
           </div>
           <footer>
-            <text-area label="Contenido del curso" :callback="addCourseToCalendar">Añadir curso</text-area>
+            <text-area
+              label="Contenido del curso"
+              :callback="addCourseToCalendar"
+              >Añadir curso</text-area
+            >
           </footer>
         </article>
       </main>
@@ -107,7 +115,7 @@ article {
 .header > ul > li > a {
   text-decoration: none;
   font-size: larger;
-  color: #fff
+  color: #fff;
 }
 
 .header > ul > li > img {
@@ -117,7 +125,7 @@ article {
 .header > ul > li > a:hover {
   text-decoration: none;
   font-size: larger;
-  color: #f4511e
+  color: #f4511e;
 }
 
 .credits {
@@ -125,7 +133,7 @@ article {
 }
 
 .alertbud {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 @media (max-width: 1024px) {
@@ -149,6 +157,5 @@ article {
     transform: scale(0.9);
     margin-top: -3em;
   }
-
 }
 </style>

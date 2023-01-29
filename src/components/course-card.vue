@@ -58,9 +58,7 @@ async function addComment(content: string) {
             v-bind:key="group.number"
           >
             <p>
-              {{ group.name }} ({{
-                course.groups[group.number - 1].teacher
-              }})
+              {{ group.name }} ({{ course.groups[group.number - 1].teacher }})
             </p>
           </li>
         </ul>
@@ -86,29 +84,17 @@ async function addComment(content: string) {
         </h5>
         <h5>¿Como calificarias a este docente?</h5>
         <div class="grid">
-          <button
-            v-on:click="
-              feedbacks.sendFeedback(
-                true,
-                teacher
-              )
-            "
-          >
+          <button v-on:click="feedbacks.sendFeedback(true, teacher)">
             <b> + </b>
           </button>
-          <button
-            v-on:click="
-              feedbacks.sendFeedback(
-                false,
-                teacher
-              )
-            "
-          >
+          <button v-on:click="feedbacks.sendFeedback(false, teacher)">
             <b> - </b>
           </button>
         </div>
         <h5>¿Deseas compartir tu opinion de este docente?</h5>
-        <text-area label="Comentario" :callback="addComment">Publicar</text-area>
+        <text-area label="Comentario" :callback="addComment"
+          >Publicar</text-area
+        >
       </div>
       <label for="switch" style="display: flex; align-items: center">
         <input

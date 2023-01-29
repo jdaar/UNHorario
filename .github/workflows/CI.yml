@@ -27,7 +27,7 @@ jobs:
       - name: Lint code
         run: make lint
       - name: Test code
-        run: make test 
+        run: make test
   post_run:
     name: Post run
     needs: [run]

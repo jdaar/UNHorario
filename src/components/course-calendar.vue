@@ -33,6 +33,8 @@ const events = computed(() =>
 
 const fullCalendarOptions = computed(() => ({
   calendarOptions: {
+    timezone: "local",
+    locale: "es-co",
     plugins: [timeGridPlugin, bootstrapPlugin],
     initialView: "timeGridWeek",
     themeSystem: "bootstrap5",

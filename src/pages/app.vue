@@ -6,16 +6,16 @@
 </template>
 
 <style>
-  .app {
-    margin-top: -6em;
-    transform: scale(0.8);
-  }
+.app {
+  margin-top: -6em;
+  transform: scale(0.8);
+}
 
-  html {
-    font-family: 'Montserrat', sans-serif;
-  }
+html {
+  font-family: "Montserrat", sans-serif;
+}
 
-  button {
-    font-weight: 600;
-  }
+button {
+  font-weight: 600;
+}
 </style>

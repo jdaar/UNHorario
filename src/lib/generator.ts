@@ -78,7 +78,14 @@ export function lectureGenerator(values: string): Lecture[] {
     .replace("Horarios/Aula: No informado", "")
     .split("Duración")[0]
     .split(".")
-    .map((value) => value.trim().replace(/Fecha:([0-9]){2}\/[0-9]{2}\/[0-9]{3}.*([0-9]){2}\/[0-9]{2}\/[0-9]{3}\w/ig, ''))
+    .map((value) =>
+      value
+        .trim()
+        .replace(
+          /Fecha:([0-9]){2}\/[0-9]{2}\/[0-9]{3}.*([0-9]){2}\/[0-9]{2}\/[0-9]{3}\w/gi,
+          ""
+        )
+    )
     .filter((v) => v.match(/.* de [0-9]{2}:[0-9]{2} a [0-9]{2}:[0-9]{2}/i))
     .map((value) => ({
       day: asDay(value.split(" de ")[0]),

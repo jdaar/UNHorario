@@ -23,7 +23,7 @@ function addCourseToCalendar(values: string) {
           <img src="/logo.svg" alt="UNHorario" />
           <ul>
             <li>
-              v
+              
             </li>
             <li>
               <a href="https://github.com/jdaar/UNHorario/blob/master/USAGE.md"

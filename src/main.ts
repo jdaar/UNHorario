@@ -7,6 +7,7 @@ import MainSidebar from "@/components/main-sidebar.vue";
 import MainLayout from "@/components/main-layout.vue";
 import TextArea from "@/components/text-area.vue";
 import CourseCard from "./components/course-card.vue";
+import VueGtag from "vue-gtag";
 
 const app = createApp(App);
 
@@ -18,5 +19,8 @@ app.component("MainLayout", MainLayout);
 app.component("TextArea", TextArea);
 
 app.use(createPinia());
+app.use(VueGtag, {
+  config: { id: "G-0XJNH6LW8R" },
+});
 
 app.mount("#app");

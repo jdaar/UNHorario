@@ -26,6 +26,7 @@
     "firebase": "^9.15.0",
     "pinia": "^2.0.21",
     "vue": "^3.2.38",
+    "vue-gtag": "^2.0.1",
     "vue-select": "^3.20.0"
   },
   "devDependencies": {

@@ -58,9 +58,9 @@ async function addComment(content: string) {
             v-bind:key="group.number"
           >
             <p>
-              Grupo {{ group.name }} ({{
+              {{ group.name }} ({{
                 course.groups[group.number - 1].teacher
-              }}, calificacion: {{ teacherRating }})
+              }})
             </p>
           </li>
         </ul>

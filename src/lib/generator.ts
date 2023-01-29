@@ -77,14 +77,14 @@ export function lectureGenerator(values: string): Lecture[] {
   const returnValue: Lecture[] = values
     .replace("Horarios/Aula: No informado", "")
     .split("Duración")[0]
-    .split("\n")
+    .split(".")
+    .map((value) => value.trim().replace(/Fecha:([0-9]){2}\/[0-9]{2}\/[0-9]{3}.*([0-9]){2}\/[0-9]{2}\/[0-9]{3}\w/ig, ''))
     .filter((v) => v.match(/.* de [0-9]{2}:[0-9]{2} a [0-9]{2}:[0-9]{2}/i))
     .map((value) => ({
       day: asDay(value.split(" de ")[0]),
       start: asHour(value.split(" de ")[1].split(" a ")[0]),
       end: asHour(value.split(" de ")[1].split(" a ")[1]),
     }));
-
   return returnValue;
 }
 
@@ -120,7 +120,7 @@ export function groupGenerator(values: string): Group[] {
           .split(": ")[1]
       ),
       lectures: lectureGenerator(
-        actualData.filter((_v, i) => i > 2).join("\n")
+        actualData.filter((_v, i) => i > 1).join("\n")
       ),
     };
     returnValue.push(group);

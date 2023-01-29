@@ -15,6 +15,11 @@ html {
   font-family: "Montserrat", sans-serif;
 }
 
+.fc-timegrid-slot-label {
+  display: none !important;
+  padding: 0 !important;
+}
+
 button {
   font-weight: 600;
 }

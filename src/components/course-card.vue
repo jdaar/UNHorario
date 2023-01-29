@@ -138,6 +138,6 @@ ul {
 }
 
 .rating-indicator {
-  text-shadow: 0px 5px 5px rgba(16,24,30,0.24);
+  text-shadow: 0px 5px 5px rgba(16, 24, 30, 0.24);
 }
 </style>

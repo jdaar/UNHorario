@@ -5,16 +5,18 @@
  */
 export function getRandomColor(): string {
   const COLORS = [
-    "#f94144", // red
-    "#f3722c", // orange
-    "#f8961e", // yellow
-    "#f9844a", // yellow-orange
-    "#f9c74f", // yellow-green
-    "#90be6d", // green
-    "#43aa8b", // green-blue
-    "#4d908e", // blue-green
-    "#577590", // blue
-    "#277da1", // blue-purple
+    0xf94144, // red
+    0xf3722c, // orange
+    0xf8961e, // yellow
+    0xf9844a, // yellow-orange
+    0xf9c74f, // yellow-green
+    0x90be6d, // green
+    0x43aa8b, // green-blue
+    0x4d908e, // blue-green
+    0x577590, // blue
+    0x277da1, // blue-purple
   ];
-  return COLORS[Math.floor(Math.random() * COLORS.length)];
+  return `#${(
+    COLORS[Math.floor(Math.random() * COLORS.length)] - 0x111111
+  ).toString(16)}`;
 }

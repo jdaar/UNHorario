@@ -14,14 +14,18 @@ import {
  * @returns The string representation of the day as date
  */
 export function hoursToDateString(hours: Hours) {
-  const dayHours = hours.hours.toLocaleString("en-US", {
+  const date = new Date();
+  date.setHours(hours.hours);
+  date.setMinutes(hours.minutes);
+  const dayHours = date.getUTCHours().toLocaleString("en-US", {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
-  const dayMinutes = hours.minutes.toLocaleString("en-US", {
+  const dayMinutes = date.getUTCMinutes().toLocaleString("en-US", {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
+
   return `${dayHours}:${dayMinutes}:00`;
 }
 

@@ -85,10 +85,10 @@ async function addComment(content: string) {
         <h5>¿Como calificarias a este docente?</h5>
         <div class="grid">
           <button v-on:click="feedbacks.sendFeedback(true, teacher)">
-            <b> + </b>
+            <b class="rating-indicator"> 👍 </b>
           </button>
           <button v-on:click="feedbacks.sendFeedback(false, teacher)">
-            <b> - </b>
+            <b class="rating-indicator"> 👎 </b>
           </button>
         </div>
         <h5>¿Deseas compartir tu opinion de este docente?</h5>
@@ -135,5 +135,9 @@ ul {
 .no-padding {
   padding-top: 0;
   padding-bottom: 1px;
+}
+
+.rating-indicator {
+  text-shadow: 0px 5px 5px rgba(16,24,30,0.24);
 }
 </style>

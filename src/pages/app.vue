@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { event } from "vue-gtag";
+import { onMounted } from "vue";
+
+onMounted(() => {
+  event("viewedSite");
+});
+</script>
+
 <template>
   <MainLayout>
     <CourseCalendar />

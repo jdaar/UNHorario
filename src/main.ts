@@ -20,7 +20,12 @@ app.component("TextArea", TextArea);
 
 app.use(createPinia());
 app.use(VueGtag, {
-  config: { id: "G-0XJNH6LW8R" },
+  config: { 
+    id: "G-0XJNH6LW8R",
+    params: {
+      anonimize_ip: true,
+    }
+  },
 });
 
 app.mount("#app");

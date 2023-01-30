@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { event } from "vue-gtag";
+import { pageview } from "vue-gtag";
 import { onMounted } from "vue";
 
 onMounted(() => {
-  event("viewedSite");
+  pageview({ page_path: "/" });
 });
 </script>
 
@@ -22,11 +22,6 @@ onMounted(() => {
 
 html {
   font-family: "Montserrat", sans-serif;
-}
-
-.fc-timegrid-slot-label {
-  display: none !important;
-  padding: 0 !important;
 }
 
 button {

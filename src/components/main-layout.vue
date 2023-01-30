@@ -115,7 +115,7 @@ article {
 .header > ul > li > a {
   text-decoration: none;
   font-size: larger;
-  color: #fff;
+  color: var(--h1-color);
 }
 
 .header > ul > li > img {

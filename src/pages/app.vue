@@ -27,4 +27,10 @@ html {
 button {
   font-weight: 600;
 }
+
+.fc-timegrid-slot-label-cushion {
+  display: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
 </style>

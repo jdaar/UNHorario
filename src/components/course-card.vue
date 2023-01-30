@@ -22,8 +22,8 @@ watch(teacher, (newValue) => {
 });
 
 onMounted(() => {
-  feedbacks.populateFeedback(teacher.value)
-})
+  feedbacks.populateFeedback(teacher.value);
+});
 
 const teacherRating = computed(
   () =>

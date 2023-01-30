@@ -79,7 +79,10 @@ function uploadCourses(event: Event) {
       Descargar UNHorario
     </button>
     <ul class="mt">
-      <li v-for="course in courses.courses" v-bind:key="course.code">
+      <li
+        v-for="course in courses.courses.sort((a) => (a.included ? 0 : 1))"
+        v-bind:key="course.code"
+      >
         <CourseCard :course="course" />
       </li>
     </ul>

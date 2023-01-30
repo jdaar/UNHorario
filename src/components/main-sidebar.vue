@@ -10,6 +10,15 @@ import { computed } from "vue";
 const courses = useCourseStore();
 
 /**
+ * Courses sorted by included param
+ */
+const sortedCourses = computed(() => {
+  let returnValue = [...courses.courses];
+  returnValue.sort((a) => (a.included ? 0 : 1));
+  return returnValue;
+});
+
+/**
  * Contains all the events that will be displayed in the calendar.
  */
 const events = computed(() =>
@@ -79,10 +88,7 @@ function uploadCourses(event: Event) {
       Descargar UNHorario
     </button>
     <ul class="mt">
-      <li
-        v-for="course in courses.courses.sort((a) => (a.included ? 0 : 1))"
-        v-bind:key="course.code"
-      >
+      <li v-for="course in sortedCourses" v-bind:key="course.code">
         <CourseCard :course="course" />
       </li>
     </ul>

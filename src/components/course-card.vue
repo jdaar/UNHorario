@@ -2,7 +2,7 @@
 import { useCourseStore } from "@/stores/course";
 import type { Course } from "@/stores/types";
 import { useFeedbackStore } from "@/stores/feedback";
-import { watch } from "vue";
+import { onMounted, watch } from "vue";
 import { computed } from "vue";
 import { uploadComment } from "@/lib/firestore";
 
@@ -20,6 +20,10 @@ const teacher = computed(
 watch(teacher, (newValue) => {
   feedbacks.populateFeedback(newValue!);
 });
+
+onMounted(() => {
+  feedbacks.populateFeedback(teacher.value)
+})
 
 const teacherRating = computed(
   () =>

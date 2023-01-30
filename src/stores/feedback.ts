@@ -49,6 +49,7 @@ export const useFeedbackStore = defineStore("feedback", () => {
    * @since 0.0.4
    */
   function populateFeedback(teacher_name: string) {
+    if (!teacher_name) return;
     const actualRecord = feedback.value.filter(
       (f) => f.teacher_name === teacher_name
     );

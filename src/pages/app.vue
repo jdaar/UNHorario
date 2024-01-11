@@ -24,7 +24,6 @@ onMounted(() => {
   <Tabs default-value="cronogram" class="h-full">
     <TabsList class="flex justify-center w-fit ml-md mb-0 pt-0 pb-0 mt-sm">
       <TabsTrigger value="cronogram">Cronograma</TabsTrigger>
-      <TabsTrigger value="ranking">Ranking</TabsTrigger>
     </TabsList>
     <TabsContent value="cronogram">
       <MainLayout>

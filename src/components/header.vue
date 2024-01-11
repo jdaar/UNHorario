@@ -1,18 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { supabase } from "@/lib/supabase";
+import { getCourseCount } from "@/lib/supabase";
 
 const count = ref(0);
-
-/**
-  * Gets the course count from the supabase database at component initialization only
-  * @since 0.0.1
-  */
-async function getCourseCount() {
-  const result = await supabase.from('Courses').select('*', { count: 'exact', head: true });
-  if (result.error) console.error(result.error);
-    return result.count;
-}
 
 onMounted(() => {
   getCourseCount().then((_count) => {

@@ -33,16 +33,16 @@ function addCourseToCalendar(values: string) {
 <template>
   <div class="flex flex-col justify-between h-full content-end pt-md">
     <div class="max-h-96">
-    <ScrollArea class="w-full h-full">
-      <div class="gap-sm flex flex-col">
-      <CourseCard :course_id="2" />
-      <CourseCard :course_id="3" />
-      <CourseCard :course_id="4" />
-      <CourseCard :course_id="5" />
-      <CourseCard :course_id="6" />
-      </div>
-    <ScrollBar />
-    </ScrollArea>
+      <ScrollArea class="w-full">
+        <div class="gap-sm max-h-96 flex flex-col">
+          <CourseCard :course_id="2" />
+          <CourseCard :course_id="3" />
+          <CourseCard :course_id="4" />
+          <CourseCard :course_id="5" />
+          <CourseCard :course_id="6" />
+        </div>
+        <ScrollBar />
+      </ScrollArea>
     </div>
     <CourseDrawer />
   </div>

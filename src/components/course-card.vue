@@ -96,7 +96,7 @@ onMounted(async () => {
     <ContextMenuTrigger class="p-md border rounded w-full h-full">
       <div class="gap-md flex">
         <div class="w-1/6 flex content-center flex-wrap justify-center">
-          <div class="w-12 h-12 p-0 text-green-500 text-center justify-center align-center content-center flex flex-wrap rounded-full mt-1 mb-2">
+          <div class="w-12 p-0 text-green-500 text-center justify-center align-center content-center flex flex-wrap rounded-full mt-1 mb-2">
             <svg width="32" height="28" viewBox="0 0 16 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path d="M15.3334 6.66666C15.3334 6.31303 15.1929 5.9739 14.9429 5.72385C14.6928 5.4738 14.3537 5.33332 14.0001 5.33332H9.78675L10.4267 2.28666C10.4401 2.21999 10.4467 2.14666 10.4467 2.07332C10.4467 1.79999 10.3334 1.54666 10.1534 1.36666L9.44675 0.666656L5.06008 5.05332C4.81341 5.29999 4.66675 5.63332 4.66675 5.99999V12.6667C4.66675 13.0203 4.80722 13.3594 5.05727 13.6095C5.30732 13.8595 5.64646 14 6.00008 14H12.0001C12.5534 14 13.0267 13.6667 13.2267 13.1867L15.2401 8.48666C15.3001 8.33332 15.3334 8.17332 15.3334 7.99999V6.66666ZM0.666748 14H3.33341V5.99999H0.666748V14Z" fill="currentColor"/>
             </svg>

@@ -1,67 +1,66 @@
 <script setup lang="ts">
-import "@fullcalendar/core/vdom"; // solves problem with Vite
-import timeGridPlugin from "@fullcalendar/timegrid";
-import bootstrapPlugin from "@fullcalendar/bootstrap5";
-import { computed } from "vue";
-
 import { useCourseStore } from "@/stores/course";
-import type { Course } from "@/stores/types";
-import { hoursToDateString } from "@/lib/generator";
-import { getRandomColor } from "@/lib/utils";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Label } from "@/components/ui/label";
 
 const courses = useCourseStore();
 
-/**
- * Contains all the events that will be displayed in the calendar.
- */
-const events = computed(() =>
-  courses.courses
-    .filter((course) => course.included && course.selectedGroup)
-    .map((course: Course) =>
-      course.groups[course.selectedGroup! - 1].lectures.map((lecture) => ({
-        title: course.name,
-        daysOfWeek: [lecture.day],
-        startTime: hoursToDateString(lecture.start),
-        endTime: hoursToDateString(lecture.end),
-        groupId: course.code,
-        color: getRandomColor(),
-        allDay: false,
-      }))
-    )
-    .reduce((accumulator, value) => accumulator.concat(value), [])
-);
+const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
-const fullCalendarOptions = computed(() => ({
-  calendarOptions: {
-    locale: "es-co",
-    plugins: [timeGridPlugin, bootstrapPlugin],
-    initialView: "timeGridWeek",
-    themeSystem: "bootstrap5",
-    events: events.value,
-  },
-}));
+const daySegments = Array.from({ length: 24 }, (_, i) => {
+  const hour = i.toString().padStart(2, '0');
+  return `${hour}:00`;
+}).flatMap((hour) => [hour, `${hour.split(':')[0]}:30`]);
+console.log(daySegments);
+
+const lecturesByDay = {
+  0: [{
+    start: '08:00',
+    end: '10:00',
+  }],
+  1: [{
+    start: '08:00',
+    end: '10:00',
+  }],
+  2: [{
+    start: '08:00',
+    end: '10:00',
+  }],
+  3: [{
+    start: '08:00',
+    end: '10:00',
+  }],
+  4: [{
+    start: '08:00',
+    end: '10:00',
+  }],
+  5: [{
+    start: '08:00',
+    end: '10:00',
+  }]
+}
 </script>
 
 <template>
-  <div class="calendar">
-    <FullCalendar :options="fullCalendarOptions.calendarOptions"></FullCalendar>
+  <div class="pt-md">
+    <ScrollArea class="border rounded-md h-full whitespace-nowrap overflow-hidden">
+      <ul class="w-full h-full relative">
+        <li v-for="day in Object.keys(lecturesByDay)" v-bind:key="day" class="w-full h-full flex content-center flex-wrap p-md">
+          <Label class="w-20 h-12">
+            {{ days[day] }}
+          </Label>
+          <div class="relative">
+            <div class="w-full h-12 absolute">
+              <ul class="flex gap-md">
+                <li v-for="segment in daySegments" v-bind:key="segment" class="w-12 h-full flex content-center flex-wrap">
+                  <div v-bind:key="segment"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ScrollBar class="w-md" orientation="horizontal" />
+    </ScrollArea>
   </div>
 </template>
-
-<style scoped>
-.calendar {
-  height: 50em;
-  width: 100%;
-}
-
-.calendar > .fc {
-  height: 100%;
-  margin: 1em;
-}
-
-@media (max-width: 1024px) {
-  .calendar {
-    height: 40em;
-  }
-}
-</style>

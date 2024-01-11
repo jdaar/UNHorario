@@ -1,3 +1,11 @@
+import { type ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+import { camelize, getCurrentInstance, toHandlerKey } from 'vue'
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
 /**
  * Generates a random color from the COLORS array
  * @since 0.0.3

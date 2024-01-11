@@ -2,35 +2,38 @@
 import { pageview } from "vue-gtag";
 import { onMounted } from "vue";
 
+import MainLayout from "@/components/main-layout.vue";
+import CourseCalendar from "@/components/course-calendar.vue";
+
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/tabs'
+
+import Header from "@/components/header.vue";
+
 onMounted(() => {
   pageview({ page_path: "/" });
 });
 </script>
 
 <template>
-  <MainLayout>
-    <CourseCalendar />
-    <MainSidebar />
-  </MainLayout>
+  <Header></Header>
+  <Tabs default-value="cronogram" class="h-full">
+    <TabsList class="flex justify-center w-fit ml-md mb-0 pt-0 pb-0 mt-sm">
+      <TabsTrigger value="cronogram">Cronograma</TabsTrigger>
+      <TabsTrigger value="ranking">Ranking</TabsTrigger>
+    </TabsList>
+    <TabsContent value="cronogram">
+      <MainLayout>
+        <CourseCalendar />
+      </MainLayout>
+    </TabsContent>
+    <TabsContent value="ranking">
+      <MainLayout>
+      </MainLayout>
+    </TabsContent>
+  </Tabs>
 </template>
-
-<style>
-.app {
-  margin-top: -6em;
-  transform: scale(0.8);
-}
-
-html {
-  font-family: "Montserrat", sans-serif;
-}
-
-button {
-  font-weight: 600;
-}
-
-.fc-timegrid-slot-label-cushion {
-  display: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-</style>

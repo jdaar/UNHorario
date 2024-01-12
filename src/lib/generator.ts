@@ -5,7 +5,7 @@ import {
   type Group,
   type Hours,
   type Lecture,
-} from "@/stores/types";
+} from "../stores/types.ts";
 
 /**
  * Parses a day to a date string
@@ -75,7 +75,7 @@ export function asHour(hourString: string): Hours {
  * @returns Parsed string as Lecture[]
  */
 export function lectureGenerator(values: string): Lecture[] {
-  const returnValue: Lecture[] = values
+  const filteredValues: Lecture[] = values
     .replace("Horarios/Aula: No informado", "")
     .split("Duración")[0]
     .split(".")
@@ -87,12 +87,25 @@ export function lectureGenerator(values: string): Lecture[] {
           ""
         )
     )
-    .filter((v) => v.match(/.* de [0-9]{2}:[0-9]{2} a [0-9]{2}:[0-9]{2}/i))
-    .map((value) => ({
+    .map(
+      (v) =>
+        (v.match(/.* de [0-9]{2}:[0-9]{2} a [0-9]{2}:[0-9]{2}/i) ?? [null])[0]
+    )
+    .filter((v) => v !== null);
+
+  const returnValue = filteredValues.map((value) => {
+    const startTime = asHour(value.split(" de ")[1].split(" a ")[0]);
+    const endTime = asHour(value.split(" de ")[1].split(" a ")[1]);
+    return {
       day: asDay(value.split(" de ")[0]),
-      start: asHour(value.split(" de ")[1].split(" a ")[0]),
-      end: asHour(value.split(" de ")[1].split(" a ")[1]),
-    }));
+      start: `${startTime.hours.toString().padStart(2, "0")}:${startTime.minutes
+        .toString()
+        .padStart(2, "0")}:00`,
+      end: `${endTime.hours.toString().padStart(2, "0")}:${endTime.minutes
+        .toString()
+        .padStart(2, "0")}:00`,
+    };
+  });
   return returnValue;
 }
 
@@ -102,34 +115,89 @@ export function lectureGenerator(values: string): Lecture[] {
  * @param values String to be parsed
  * @returns Parsed string as Group[]
  */
-export function groupGenerator(values: string): Group[] {
-  const groupRegex = /\((.*-)?[0-9]*\).*Grupo [0-9]{1,2}.*/i;
-  const groupNames = values
-    .split("\n")
-    .map((v) => v.match(groupRegex))
-    .filter((v) => v != null)
-    .map((v) => v![0]);
-  const relevantData = values
-    .split(groupRegex)
-    .filter((v) => v != undefined && v.length > 10)
-    .map((value) => value.trim())
-    .filter((value) => value !== "");
+export function groupGenerator(_values: string): Group[] {
+  if (!_values) return [];
+  const values = _values.trim();
+  if (values.startsWith("Prerrequisitos")) return [];
+  //|(\((.*-)?[0-9]*\).*Estudiantes\s?.*)
+  //const groupRegex = new RegExp('^\(.*\)\s?(Grupo|Peama|Estudiante).*\r$', 'gi')
+  const groupRegex = new RegExp("((.*-)?[0-9]*).*Grupo [0-9]{1,2}.*", "gi");
+
+  const groups: { [x: string]: { start: number; end: number } } = {};
+  const lines = values.split("\n");
+  for (let linePtr = 0; linePtr < lines.length; linePtr++) {
+    const line = lines[linePtr];
+    if (line.match(groupRegex)) {
+      const name = line.trim().match(groupRegex)![0];
+      const start = linePtr;
+      let end = linePtr;
+      while (
+        lines[end + 1] &&
+        (!lines[end + 1].match(groupRegex) ||
+          lines[end + 1].match(/Prerrequisitos/gi))
+      ) {
+        end++;
+      }
+      groups[name] = { start, end };
+    }
+  }
+
   const returnValue = [];
 
-  for (let i = 0; i < relevantData.length; i++) {
-    const actualData = relevantData[i].split("Volver")[0].split("\n");
-    const group: Group = {
-      name: groupNames[i],
-      teacher: actualData[0].split(":")[1].replace(".", ""),
-      number: i + 1,
-      availablePlaces: parseInt(
+  const groupNames = Object.keys(groups);
+
+  for (let groupIdx = 0; groupIdx < groupNames.length; groupIdx += 1) {
+    const actualData = lines.slice(
+      groups[groupNames[groupIdx]].start,
+      groups[groupNames[groupIdx]].end + 1
+    );
+
+    const name = groupNames[groupIdx];
+
+    let teacher = "";
+    try {
+      teacher = actualData
+        .filter((v) => v.match(/Profesor: .*/i))[0]
+        .split(":")[1]
+        .replace(".", "");
+    } catch (e) {
+      console.log(e);
+      console.log(actualData);
+      continue;
+    }
+
+    const number = groupIdx + 1;
+
+    let availablePlaces = 0;
+    try {
+      availablePlaces = parseInt(
         actualData
           .filter((v) => v.match(/Cupos disponibles: [0-9]+/i))[0]
           .split(": ")[1]
-      ),
-      lectures: lectureGenerator(
+      );
+    } catch (e) {
+      console.log(e);
+      console.log(actualData);
+      continue;
+    }
+
+    let lectures;
+    try {
+      lectures = lectureGenerator(
         actualData.filter((_v, i) => i > 1).join("\n")
-      ),
+      );
+    } catch (e) {
+      console.log(e);
+      console.log(actualData);
+      continue;
+    }
+
+    const group: Group = {
+      group_name: name,
+      teachers: teacher,
+      group_id: number,
+      quotas: availablePlaces,
+      lectures,
     };
     returnValue.push(group);
   }
@@ -144,17 +212,26 @@ export function groupGenerator(values: string): Group[] {
  * @returns Values parsed as a Course
  */
 export function courseGenerator(values: string): Course {
-  const relevantData = values.split("\nVolver\n")[1];
+  const relevantData = values.split("Volver")[1].trim();
+
+  const relevantDataHeader = relevantData.split("\n")[0];
+
+  const name = relevantDataHeader.split("(")[0].trim();
+  const code = relevantDataHeader.split("(")[1].split(")")[0].trim();
+  const credits = parseInt(relevantData.split("\n")[2].split(":")[1].trim());
+  const type =
+    relevantData.split("\n")[1].split(":")[1].trim() == "LIBRE ELECCIÓN"
+      ? CourseType.freeChoice
+      : CourseType.obligatory;
+  console.log(relevantData.split(/CLASE .* \(.*\)/)[1]);
+  const groups = groupGenerator(relevantData.split(/CLASE .* \(.*\)/)[1]);
 
   const course: Course = {
-    name: relevantData.split("\n")[0].split("(")[0].trim(),
-    code: relevantData.split("\n")[0].split("(")[1].split(")")[0].trim(),
-    credits: parseInt(relevantData.split("\n")[2].split(":")[1].trim()),
-    type:
-      relevantData.split("\n")[1].split(":")[1].trim() == "LIBRE ELECCIÓN"
-        ? CourseType.freeChoice
-        : CourseType.obligatory,
-    groups: groupGenerator(relevantData.split(/CLASE .* \(.*\)/)[1]),
+    name,
+    code,
+    credits,
+    type,
+    groups,
     included: true,
   };
 

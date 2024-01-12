@@ -1,143 +1,27 @@
 <script setup lang="ts">
-import { hoursToDateString } from "@/lib/generator";
-import { downloadIcsFromEvents } from "@/lib/ics";
-import { downloadCourses } from "@/lib/save";
-import { getRandomColor } from "@/lib/utils";
 import { useCourseStore } from "@/stores/course";
-import type { Course } from "@/stores/types";
-import { computed } from "vue";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const courses = useCourseStore();
 
-/**
- * Courses sorted by included param
- */
-const sortedCourses = computed(() => {
-  let returnValue = [...courses.courses];
-  returnValue.sort((a) => (a.included ? 0 : 1));
-  return returnValue;
-});
-
-/**
- * Contains all the events that will be displayed in the calendar.
- */
-const events = computed(() =>
-  courses.courses
-    .filter((course) => course.included)
-    .map((course: Course) =>
-      course.groups[course.selectedGroup! - 1].lectures.map((lecture) => ({
-        title: course.name,
-        daysOfWeek: [lecture.day],
-        startTime: hoursToDateString(lecture.start),
-        endTime: hoursToDateString(lecture.end),
-        groupId: course.code,
-        color: getRandomColor(),
-        allDay: false,
-      }))
-    )
-    .reduce((accumulator, value) => accumulator.concat(value), [])
-);
-
-/**
- * For use in uploadCourses
- * @since 0.0.2
- * @internal
- */
-interface HTMLInputEvent extends Event {
-  target: HTMLInputElement & EventTarget;
-}
-
-/**
- * Uploads courses as JSON and parses them
- * @since 0.0.2
- * @param event DOM event that triggers the function
- */
-function uploadCourses(event: Event) {
-  const files =
-    (event as HTMLInputEvent).target.files ||
-    (event as DragEvent).dataTransfer!.files;
-  if (!files.length) return;
-
-  /**
-   * Parses the string value as JSON and executes courses.uploadCourses
-   * @since 0.0.2
-   * @internal
-   * @param value The string to be parsed
-   */
-  function asyncHandler(value: string) {
-    courses.uploadCourses(JSON.parse(value) as Course[]);
-  }
-
-  files[0]
-    .text()
-    .then(asyncHandler)
-    .catch((error: Error) => {
-      console.error(error);
-    });
-}
+import CourseCard from "@/components/course-card.vue";
+import CourseDrawer from "@/components/course-drawer.vue";
 </script>
 
 <template>
-  <div class="course-container">
-    <button v-on:click="downloadIcsFromEvents(events)">Descargar ICS</button>
-    <label class="upload-btn">
-      <input type="file" class="" @change="uploadCourses" />
-      Cargar UNHorario
-    </label>
-    <button v-on:click="downloadCourses(courses.courses)">
-      Descargar UNHorario
-    </button>
-    <ul class="mt">
-      <li v-for="course in sortedCourses" v-bind:key="course.code">
-        <CourseCard :course="course" />
-      </li>
-    </ul>
+  <div class="flex flex-col justify-between h-full content-end pt-md">
+    <div class="max-h-96">
+      <ScrollArea class="w-full">
+        <div class="gap-sm max-h-96 flex flex-col">
+          <CourseCard
+            v-bind:key="course.id"
+            :course="course"
+            v-for="course in courses.courses"
+          />
+        </div>
+        <ScrollBar />
+      </ScrollArea>
+    </div>
+    <CourseDrawer />
   </div>
 </template>
-
-<style scoped>
-input[type="file"] {
-  display: none;
-}
-
-.upload-btn {
-  margin-bottom: 1em;
-  text-decoration: none;
-  background: var(--primary);
-  color: #fff;
-  border-radius: 3px;
-  width: 100%;
-  text-align: center;
-  padding: 0.75em;
-  border: none;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.upload-btn:hover {
-  background: var(--primary-hover);
-}
-
-.course-container {
-  flex-direction: column;
-  overflow-y: scroll;
-  padding: 0;
-  margin: 0;
-  height: 47.5em;
-  width: 100%;
-}
-
-ul {
-  padding: 0;
-}
-
-.mt {
-  margin-top: 3em !important;
-}
-
-@media (max-width: 1024px) {
-  .course-container {
-    margin-top: 3em;
-  }
-}
-</style>

@@ -1,3 +1,10 @@
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
 /**
  * Generates a random color from the COLORS array
  * @since 0.0.3
@@ -19,4 +26,13 @@ export function getRandomColor(): string {
   return `#${(
     COLORS[Math.floor(Math.random() * COLORS.length)] - 0x111111
   ).toString(16)}`;
+}
+
+// Really couldn't bother to write this myself https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-an-array-of-objects
+export function groupBy(xs: any, key: any) {
+  if (xs == null) return null;
+  return xs.reduce(function (rv: any, x: any) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
 }

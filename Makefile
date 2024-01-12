@@ -11,6 +11,6 @@ test:
 	yarn test
 
 build:
-	yarn build
+	yarn build-only
 
 .PHONY: install format lint test build

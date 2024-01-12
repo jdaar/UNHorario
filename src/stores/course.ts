@@ -5,63 +5,56 @@ import { computed } from "vue";
 import { hoursToDateString } from "@/lib/generator";
 import { getRandomColor } from "@/lib/utils";
 
-/**
- * Represents the initial state of the store
- * @since 0.0.1
- * @internal
- */
 export const defaultCourses: Course[] = [];
 
-/**
- * Represents the store for courses
- * @since 0.0.1
- */
 export const useCourseStore = defineStore("course", {
   state: () => {
     const courses = ref(defaultCourses);
+    const coursesLectures = ref([]);
 
-    /**
-     * Adds a course to the store
-     * @param course Instance of the course to add
-     * @since 0.0.1
-     */
     function addCourse(course: Course) {
-      const actualCourse = courses.value.find((c) => c.code === course.code);
+      const actualCourse = courses.value.find((c) => c.id === course.id);
       if (!actualCourse) {
-        courses.value.push(course);
+        const processedCourse = {
+          ...course,
+          color: getRandomColor(),
+        };
+        courses.value.push(processedCourse);
       }
     }
 
-    /**
-     * Adds a course to the store
-     * @param course Instance of the course to add
-     * @since 0.0.1
-     */
-    function addCourseById(course_id: number) {
-      /*
-      const actualCourse = courses.value.find((c) => c.code === course.code);
-      if (!actualCourse) {
-        courses.value.push(course);
-      }
-      */
-    }
-
-    function removeCourse(course_code: string) {
-      courses.value = courses.value.filter(
-        (course) => course.code !== course_code
-      );
-    }
-
-    /**
-     * It selects a group in a course
-     * @param course_code The code of the course
-     * @param group_number The number of the group
-     */
-    function selectGroup(course_code: string, group_number: number) {
-      const course = courses.value.find((course) => course.code === course_code);
+    function selectGroup(course_id: number, group_id: number, lectures: any[]) {
+      const course = courses.value.find((course) => course.id === course_id);
       if (course) {
-        course.selectedGroup = group_number;
+        const group = course.groups.filter(v => v.group_id == parseInt(group_id))
+        if (group.length > 0) {
+          courses.value = [
+            ...courses.value.filter((_course) => _course.id !== course_id),
+            {
+              ...course,
+              selectedGroup: parseInt(group_id)
+            },
+          ]
+          coursesLectures.value = [
+            ...coursesLectures.value.filter((lecture) => lecture.course_id !== course_id),
+            ...lectures.map((lecture) => {
+              return {
+                ...lecture,
+                course_id, 
+                color: course.color,
+                course_name: course.name,
+              }
+            }) 
+          ]
+        }
       }
+    }
+
+    function removeCourse(course_id: number) {
+      courses.value = courses.value.filter(
+        (course) => course.id !== course_id
+      );
+      coursesLectures.value = coursesLectures.value.filter((lecture) => lecture.course_id !== course_id)
     }
 
     /**
@@ -87,6 +80,7 @@ export const useCourseStore = defineStore("course", {
 
     return {
       courses,
+      coursesLectures,
       addCourse,
       removeCourse,
       selectGroup,
@@ -96,20 +90,15 @@ export const useCourseStore = defineStore("course", {
   },
   getters: {
       getEvents: (state) => {
-        return state.courses
-          .filter((course) => course.included)
-          .map((course: Course) =>
-            course.groups[course.selectedGroup! - 1].lectures.map((lecture) => ({
-              title: course.name,
-              daysOfWeek: [lecture.day],
-              startTime: hoursToDateString(lecture.start),
-              endTime: hoursToDateString(lecture.end),
-              groupId: course.code,
-              color: getRandomColor(),
-              allDay: false,
-            }))
-          )
-          .reduce((accumulator, value) => accumulator.concat(value), [])
+        console.log(state)
+        return {
+          0: [],
+          1: [],
+          2: [],
+          3: [],
+          4: [],
+          5: [],
+        }
       }
   }
 });

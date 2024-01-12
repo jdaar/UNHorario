@@ -5,14 +5,24 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 
+import { useToast } from '@/components/ui/toast';
+
+const { toast } = useToast();
+
 import MainSidebar from './main-sidebar.vue';
 
-import { downloadIcsFromEvents } from "@/lib/ics";
 import { downloadCourses } from "@/lib/save";
 import { useCourseStore } from "@/stores/course";
 import type { Course } from "@/stores/types";
+import { watch, ref } from 'vue';
 
 const courses = useCourseStore();
+const savefile = ref();
+
+watch(savefile, (value) => {
+  if (!value) return;
+  console.log(value);
+})
 
 /**
  * For use in uploadCourses
@@ -29,13 +39,15 @@ interface HTMLInputEvent extends Event {
  * @param event DOM event that triggers the function
  */
 function uploadCourses(event: Event) {
+  console.log('executed')
   const files =
     (event as HTMLInputEvent).target.files ||
     (event as DragEvent).dataTransfer!.files;
   if (!files.length) return;
 
   function asyncHandler(value: string) {
-    courses.uploadCourses(JSON.parse(value) as Course[]);
+    const {courses: _courses, coursesLectures} = JSON.parse(value)
+    courses.uploadCourses(_courses as Course[]);
   }
 
   files[0]
@@ -66,11 +78,14 @@ function uploadCourses(event: Event) {
               </PopoverTrigger>
               <PopoverContent class="w-80 flex flex-col gap-md">
                 <Label for="ics-download">Exportar a Google Calendar</Label>
-                <Button id="ics-download" variant="outline" v-on:click="downloadIcsFromEvents(courses.getEvents)">Descargar ICS</Button>
+                <Button id="ics-download" variant="outline" v-on:click="toast({
+                  title: 'Oops!',
+                  description: 'Todavia estoy trabajando en esa caracteristica, estara lista antes del dia de inscripciones'
+                })">Descargar ICS</Button>
                 <Label for="un-upload">Subir archivo de guardado</Label>
-                <Input id="un-upload" type="file"/>
+                <Input id="un-upload" type="file" @change="uploadCourses"/>
                 <Label for="un-download">Descargar horario actual</Label>
-                <Button id="un-download" variant="outline" v-on:click="downloadCourses(courses.courses)">
+                <Button id="un-download" variant="outline" v-on:click="downloadCourses">
                   Descargar archivo
                 </Button>
               </PopoverContent>

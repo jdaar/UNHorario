@@ -31,6 +31,9 @@ export type Hours = {
  */
 export type Course = {
   name: string;
+  created_at: string;
+  facultyId: number;
+  id: number;
   code: string;
   credits: number;
   type: CourseType;

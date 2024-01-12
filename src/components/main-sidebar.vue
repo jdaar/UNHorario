@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { courseGenerator } from "@/lib/generator";
 import { useCourseStore } from "@/stores/course";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-const courses = useCourseStore();
 
+const courses = useCourseStore();
 
 import CourseCard from "@/components/course-card.vue";
 import CourseDrawer from "@/components/course-drawer.vue";
@@ -28,6 +28,9 @@ function addCourseToCalendar(values: string) {
   courses.addCourse(course);
 }
 
+onMounted(() => {
+  console.log(courses)
+});
 </script>
 
 <template>
@@ -35,11 +38,7 @@ function addCourseToCalendar(values: string) {
     <div class="max-h-96">
       <ScrollArea class="w-full">
         <div class="gap-sm max-h-96 flex flex-col">
-          <CourseCard :course_id="2" />
-          <CourseCard :course_id="3" />
-          <CourseCard :course_id="4" />
-          <CourseCard :course_id="5" />
-          <CourseCard :course_id="6" />
+          <CourseCard v-bind:key="course.id" :course="course" v-for="course in courses.courses" />
         </div>
         <ScrollBar />
       </ScrollArea>

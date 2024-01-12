@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useCourseStore } from "@/stores/course";
-import { useFeedbackStore } from "@/stores/feedback";
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -15,95 +12,75 @@ import {
 } from '@/components/ui/select'
 import {
   ContextMenu,
-  ContextMenuCheckboxItem,
   ContextMenuContent,
   ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuRadioGroup,
-  ContextMenuRadioItem,
-  ContextMenuSeparator,
-  ContextMenuShortcut,
-  ContextMenuSub,
-  ContextMenuSubContent,
-  ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from '@/components/ui/context-menu'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
-import { supabase } from "@/lib/supabase";
 
-/**
-  * Gets the course by id from the supabase database at component initialization only
-  * @since 0.0.1
-  */
-async function getCourseById(course_id: number) {
-  const result = await supabase.from('Courses').select('*').eq('id', course_id).limit(1).single();
-  if (result.error) {
-    console.error(result.error);
-    return null;
-  }
-  return result.data;
-}
+import { ref, onMounted, watch } from "vue";
+import { groupBy } from "@/lib/utils";
+import { useCourseStore } from "@/stores/course";
+import { useToast } from '@/components/ui/toast';
+import { supabase } from '@/lib/supabase';
 
-/**
-  * Gets the course by id from the supabase database at component initialization only
-  * @since 0.0.1
-  */
-async function getGroupsByCourseId(course_id: number) {
-  const result = await supabase.from('groupview').select('*').eq('course_id', course_id);
-  if (result.error) {
-    console.error(result.error);
-    return null;
-  }
-  return result.data;
-}
+const { toast } = useToast()
 
-import { ref, onMounted, computed } from "vue";
-
-const props = defineProps<{
-  course_id: number;
-}>();
-
-const course = ref();
 const selectedCourseGroup = ref();
-const courseGroups = ref();
-const courseGroupsByTeacher = computed(() => {
-  return groupBy(courseGroups.value, 'teachers');
-});
-const courseGroupsById = computed(() => {
-  return groupBy(courseGroups.value, 'group_id');
-});
+const courseGroupsByTeacher = ref();
+const courseGroupsById = ref();
 
-// Really couldn't bother to write this myself https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-an-array-of-objects
-const groupBy = function<T>(xs: any, key: any) {
-  if (xs == null) return null;
-  return xs.reduce(function(rv: any, x: any) {
-    (rv[x[key]] = rv[x[key]] || []).push(x);
-    return rv;
-  }, {});
-};
+const courses = useCourseStore();
+
+const props = defineProps([
+  'course',
+])
+
+watch(selectedCourseGroup, async (value) => {
+  const lectures = await getGroupLectures(value);
+  courses.selectGroup(props.course.id, value, lectures ?? []);
+})
+
+async function getGroupLectures(group_id: number) {
+    const result = await supabase.from('Lectures').select('*').eq('group_id', group_id);
+    if (result.error) {
+        console.error(result.error);
+        return null;
+    }
+    return result.data;
+}
+
+function deleteCourse() {
+  courses.removeCourse(props.course.id);
+  toast({
+    title: 'Curso eliminado',
+    description: 'El curso se ha eliminado del calendario',
+  })
+}
 
 onMounted(async () => {
-  const result = await getCourseById(props.course_id);
-  if (result == null) return;
-  course.value = result;
-  const resultGroups = await getGroupsByCourseId(props.course_id);
-  courseGroups.value = resultGroups;
+  console.log('Props course', props.course)
+  if (props.course.selectedGroup) {
+    selectedCourseGroup.value = `${props.course.selectedGroup}`;
+  }
+  courseGroupsByTeacher.value = groupBy(props.course.groups, 'teachers');
+  courseGroupsById.value = groupBy(props.course.groups, 'group_id');
 }); 
 </script>
 
 <template>
   <ContextMenu>
     <ContextMenuTrigger class="p-md border rounded w-full h-full">
-      <div class="gap-md flex">
+      <div class="gap-md flex" v-if="course != null">
         <div class="w-1/6 flex content-center flex-wrap justify-center">
-          <div class="w-12 p-0 text-green-500 text-center justify-center align-center content-center flex flex-wrap rounded-full mt-1 mb-2">
+          <div :style="`color: ${course.color}`" class="w-12 p-0 text-center justify-center align-center content-center flex flex-wrap rounded-full mt-1 mb-2">
             <svg width="32" height="28" viewBox="0 0 16 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path d="M15.3334 6.66666C15.3334 6.31303 15.1929 5.9739 14.9429 5.72385C14.6928 5.4738 14.3537 5.33332 14.0001 5.33332H9.78675L10.4267 2.28666C10.4401 2.21999 10.4467 2.14666 10.4467 2.07332C10.4467 1.79999 10.3334 1.54666 10.1534 1.36666L9.44675 0.666656L5.06008 5.05332C4.81341 5.29999 4.66675 5.63332 4.66675 5.99999V12.6667C4.66675 13.0203 4.80722 13.3594 5.05727 13.6095C5.30732 13.8595 5.64646 14 6.00008 14H12.0001C12.5534 14 13.0267 13.6667 13.2267 13.1867L15.2401 8.48666C15.3001 8.33332 15.3334 8.17332 15.3334 7.99999V6.66666ZM0.666748 14H3.33341V5.99999H0.666748V14Z" fill="currentColor"/>
             </svg>
           </div>
-          <Label class="text-center"><span class="text-green-500">{{ selectedCourseGroup ? courseGroupsById[selectedCourseGroup][0].quotas : 0 }}</span> cupos</Label>
+          <Label class="text-center"><span :style="`color: ${course.color}`">{{ selectedCourseGroup ? courseGroupsById[selectedCourseGroup][0].quotas : 0 }}</span> cupos</Label>
         </div>
-        <div class="w-full" v-if="course != null">
+        <div class="w-full">
           <h4 class="text-md font-semibold">
             {{ course?.name }}
           </h4>
@@ -156,7 +133,7 @@ onMounted(async () => {
       </div>  
     </ContextMenuTrigger>
     <ContextMenuContent class="w-64">
-      <ContextMenuItem inset>
+      <ContextMenuItem inset v-on:select="deleteCourse">
         Eliminar
       </ContextMenuItem>
       <ContextMenuItem inset disabled>

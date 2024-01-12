@@ -19,7 +19,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
       - name: Install dependencies
         run: make install
       - name: Format code
@@ -39,7 +38,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
       - name: Install dependencies
         run: make install
       - name: Build code

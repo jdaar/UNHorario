@@ -17,7 +17,7 @@ export const useCourseStore = defineStore("course", {
       if (!actualCourse) {
         const processedCourse = {
           ...course,
-          color: getRandomColor(),
+          color: course.color ?? getRandomColor(),
         };
         courses.value.push(processedCourse);
       }

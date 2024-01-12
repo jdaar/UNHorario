@@ -90,12 +90,17 @@ export function lectureGenerator(values: string): Lecture[] {
     .map((v) => (v.match(/.* de [0-9]{2}:[0-9]{2} a [0-9]{2}:[0-9]{2}/i) ?? [null])[0])
     .filter((v) => v !== null);
 
+
   const returnValue = filteredValues
-    .map((value) => ({
-      day: asDay(value.split(" de ")[0]),
-      start: asHour(value.split(" de ")[1].split(" a ")[0]),
-      end: asHour(value.split(" de ")[1].split(" a ")[1]),
-    }));
+    .map((value) => {
+      const startTime = asHour(value.split(" de ")[1].split(" a ")[0]);
+      const endTime = asHour(value.split(" de ")[1].split(" a ")[1]);
+      return {
+        day: asDay(value.split(" de ")[0]),
+        start: `${startTime.hours.toString().padStart(2, '0')}:${startTime.minutes.toString().padStart(2, '0')}:00`,
+        end: `${endTime.hours.toString().padStart(2, '0')}:${endTime.minutes.toString().padStart(2, '0')}:00`
+      }
+    });
   return returnValue;
 }
 
@@ -110,14 +115,16 @@ export function groupGenerator(_values: string): Group[] {
   const values = _values.trim()
   if (values.startsWith("Prerrequisitos")) return []
   //|(\((.*-)?[0-9]*\).*Estudiantes\s?.*)
-  const groupRegex = new RegExp('^\(.*\)\s?(Grupo|Peama|Estudiante).*\r$', 'gi')
+  //const groupRegex = new RegExp('^\(.*\)\s?(Grupo|Peama|Estudiante).*\r$', 'gi')
+  const groupRegex = new RegExp('\((.*-)?[0-9]*\).*Grupo [0-9]{1,2}.*', 'gi')
+
 
   const groups: {[x: string]: {start: number, end: number}} = { }
   const lines = values.split('\n')
   for (let linePtr = 0; linePtr < lines.length; linePtr++) {
     const line = lines[linePtr]
     if (line.match(groupRegex)) {
-      const name = line.match(groupRegex)![0]
+      const name = line.trim().match(groupRegex)![0]
       const start = linePtr
       let end = linePtr
       while (lines[end + 1] && (!lines[end + 1].match(groupRegex) || lines[end + 1].match(/Prerrequisitos/gi))) {
@@ -177,10 +184,10 @@ export function groupGenerator(_values: string): Group[] {
     }
 
     const group: Group = {
-      name,
-      teacher,
-      number,
-      availablePlaces,
+      group_name: name,
+      teachers: teacher,
+      group_id: number,
+      quotas: availablePlaces,
       lectures,
     };
     returnValue.push(group);
@@ -206,6 +213,7 @@ export function courseGenerator(values: string): Course {
   const type = relevantData.split("\n")[1].split(":")[1].trim() == "LIBRE ELECCIÓN"
         ? CourseType.freeChoice
         : CourseType.obligatory;
+  console.log(relevantData.split(/CLASE .* \(.*\)/)[1])
   const groups = groupGenerator(relevantData.split(/CLASE .* \(.*\)/)[1]);
 
   const course: Course = {

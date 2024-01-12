@@ -42,6 +42,11 @@ watch(selectedCourseGroup, async (value) => {
 })
 
 async function getGroupLectures(group_id: number) {
+    if (props.course.id == null) {
+      const result = props.course.groups.find((group) => group.group_id == group_id)?.lectures;
+      console.log(result)
+      return result;
+    }
     const result = await supabase.from('Lectures').select('*').eq('group_id', group_id);
     if (result.error) {
         console.error(result.error);
@@ -59,7 +64,6 @@ function deleteCourse() {
 }
 
 onMounted(async () => {
-  console.log('Props course', props.course)
   if (props.course.selectedGroup) {
     selectedCourseGroup.value = `${props.course.selectedGroup}`;
   }

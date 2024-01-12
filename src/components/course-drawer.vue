@@ -23,20 +23,42 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Textarea } from '@/components/ui/textarea'
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/lib/supabase";
 import { ref, onMounted, watch } from "vue";
+import { courseGenerator } from "@/lib/generator";
+import { useCourseStore } from "@/stores/course";
+import { useToast } from '@/components/ui/toast';
+
+const courses = useCourseStore();
 
 const coursePage = ref();
-const page = ref(1);
 const courseCount = ref(0);
+const page = ref(1);
+
 const faculties = ref();
-const selectedFaculty = ref();
 const pensums = ref();
+
+const selectedFaculty = ref();
 const selectedPensum = ref();
+
+const courseRawText = ref();
+
 const courseSearch = ref();
 const isSearching = ref();
+
+const { toast } = useToast();
+
+function addCourseToCalendar() {
+  let course = courseGenerator(courseRawText.value);
+  courses.addCourse(course);
+  toast({
+    title: 'Curso añadido',
+    description: 'El curso se ha añadido al calendario',
+  })
+}
 
 async function getPaginatedCourses() {
     let coursesPromise = supabase
@@ -269,9 +291,18 @@ onMounted(async () => {
             </Pagination>
           </div>
           <DialogFooter>
-            <Button>
-              Añadir curso desde el portapapeles
-            </Button>
+              <Popover>
+                    <PopoverTrigger as-child>
+                        <Button>
+                        Añadir curso desde el portapapeles
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent class="w-80 h-80 flex flex-col gap-sm">
+                        <Label>Introduce el texto de la pagina del curso (SIA)</Label>
+                        <Textarea v-model="courseRawText" class="h-52" placeholder="Pega el texto aqui. Lo puedes conseguir dirigiendote al SIA, buscando el curso y entrando a ver los detalles, copiar todos sus datos con Ctrl+A y pegarlos en este area de texto con Ctrl+V" />
+                        <Button v-on:click="addCourseToCalendar">Añadir</Button>
+                    </PopoverContent>
+                </Popover>
           </DialogFooter>
         </DialogContent>
       </Dialog> 

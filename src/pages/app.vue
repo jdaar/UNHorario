@@ -3,21 +3,16 @@ import { pageview } from "vue-gtag";
 import { onMounted } from "vue";
 import MainLayout from "@/components/main-layout.vue";
 import CourseCalendar from "@/components/course-calendar.vue";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
   CardFooter,
-  CardDescription
-} from '@/components/ui/card'
-import { Toaster } from '@/components/ui/toast'
+  CardDescription,
+} from "@/components/ui/card";
+import { Toaster } from "@/components/ui/toast";
 
 import Header from "@/components/header.vue";
 
@@ -50,7 +45,8 @@ onMounted(() => {
               <CardContent class="w-full">
                 <CardDescription>
                   <p>
-                    El objetivo de esta pestaña es proveer recursos utiles para los estudiantes de la universidad.
+                    El objetivo de esta pestaña es proveer recursos utiles para
+                    los estudiantes de la universidad.
                   </p>
                 </CardDescription>
               </CardContent>
@@ -75,7 +71,8 @@ onMounted(() => {
               <CardContent class="w-full">
                 <CardDescription>
                   <p>
-                    El objetivo de esta pestaña es contar con un ranking de los mejores profesores de la universidad (por materia).
+                    El objetivo de esta pestaña es contar con un ranking de los
+                    mejores profesores de la universidad (por materia).
                   </p>
                 </CardDescription>
               </CardContent>

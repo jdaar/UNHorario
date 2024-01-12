@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { PaginationNext, type PaginationNextProps, useForwardProps } from 'radix-vue'
-import { ChevronRightIcon } from '@radix-icons/vue'
 import {
-  Button,
-} from '@/components/ui/button'
+  PaginationNext,
+  type PaginationNextProps,
+  useForwardProps,
+} from "radix-vue";
+import { ChevronRightIcon } from "@radix-icons/vue";
+import { Button } from "@/components/ui/button";
 
 const props = withDefaults(defineProps<PaginationNextProps>(), {
   asChild: true,
-})
-const forwarded = useForwardProps(props)
+});
+const forwarded = useForwardProps(props);
 </script>
 
 <template>

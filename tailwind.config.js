@@ -1,21 +1,22 @@
-const animate = require("tailwindcss-animate")
+//const animate = require("tailwindcss-animate");
+import animate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx,vue}',
-    './components/**/*.{ts,tsx,vue}',
-    './app/**/*.{ts,tsx,vue}',
-    './src/**/*.{ts,tsx,vue}',
-	],
-  
+    "./pages/**/*.{ts,tsx,vue}",
+    "./components/**/*.{ts,tsx,vue}",
+    "./app/**/*.{ts,tsx,vue}",
+    "./src/**/*.{ts,tsx,vue}",
+  ],
+
   theme: {
     container: {
       center: true,
       padding: "2rem",
       screens: {
-        "sm": "1000px",
+        sm: "1000px",
         "2xl": "1400px",
       },
     },
@@ -64,18 +65,18 @@ module.exports = {
         lg: "var(--padding)",
         md: "calc(var(--padding) - 2px)",
         sm: "calc(var(--padding) - 4px)",
-        xs: "calc(var(--padding) - 7px)"
+        xs: "calc(var(--padding) - 7px)",
       },
       gap: {
         lg: "var(--padding)",
         md: "calc(var(--padding) - 2px)",
         sm: "calc(var(--padding) - 4px)",
-        xs: "calc(var(--padding) - 7px)"
+        xs: "calc(var(--padding) - 7px)",
       },
       margin: {
         lg: "var(--padding)",
         md: "calc(var(--padding) - 2px)",
-        sm: "calc(var(--padding) - 4px)"
+        sm: "calc(var(--padding) - 4px)",
       },
       keyframes: {
         "accordion-down": {
@@ -88,10 +89,10 @@ module.exports = {
         },
         "collapsible-down": {
           from: { height: 0 },
-          to: { height: 'var(--radix-collapsible-content-height)' },
+          to: { height: "var(--radix-collapsible-content-height)" },
         },
         "collapsible-up": {
-          from: { height: 'var(--radix-collapsible-content-height)' },
+          from: { height: "var(--radix-collapsible-content-height)" },
           to: { height: 0 },
         },
       },
@@ -104,4 +105,6 @@ module.exports = {
     },
   },
   plugins: [animate],
-}
+};
+
+export default config;

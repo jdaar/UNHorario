@@ -1,7 +1,5 @@
-import type { Course } from "@/stores/types";
 import { saveAs } from "file-saver";
 import { useCourseStore } from "../stores/course.ts";
-
 
 /**
  * Gets courses ands serializes them in json format, then downloads the input
@@ -11,15 +9,19 @@ import { useCourseStore } from "../stores/course.ts";
 export function downloadCourses() {
   const courseStore = useCourseStore();
 
-  const file = new File([JSON.stringify({
-    courses: courseStore.courses,
-    coursesLectures: courseStore.coursesLectures,
-  })], "UNHorario.json", {
-    type: "application/json;charset=utf-8",
-  });
+  const file = new File(
+    [
+      JSON.stringify({
+        courses: courseStore.courses,
+        coursesLectures: courseStore.coursesLectures,
+      }),
+    ],
+    "UNHorario.json",
+    {
+      type: "application/json;charset=utf-8",
+    }
+  );
   saveAs(file);
 }
 
-export function uploadSavefile() {
-  
-}
+export function uploadSavefile() {}

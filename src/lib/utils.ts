@@ -1,9 +1,8 @@
-import { type ClassValue, clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-import { camelize, getCurrentInstance, toHandlerKey } from 'vue'
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 /**
@@ -32,8 +31,8 @@ export function getRandomColor(): string {
 // Really couldn't bother to write this myself https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-an-array-of-objects
 export function groupBy(xs: any, key: any) {
   if (xs == null) return null;
-  return xs.reduce(function(rv: any, x: any) {
+  return xs.reduce(function (rv: any, x: any) {
     (rv[x[key]] = rv[x[key]] || []).push(x);
     return rv;
   }, {});
-};
+}

@@ -369,7 +369,7 @@ onMounted(async () => {
                     as-child
                   >
                     <Button
-                      class="w-10 h-10 p-0"
+                      class="sm:max-w-15 w-full h-10 p-0"
                       :variant="item.value === page ? 'default' : 'outline'"
                     >
                       {{ item.value }}

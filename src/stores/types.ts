@@ -34,6 +34,7 @@ export type Course = {
   created_at: string;
   facultyId: number;
   id: number;
+  local?: boolean;
   code: string;
   credits: number;
   type: CourseType;

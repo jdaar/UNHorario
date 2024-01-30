@@ -64,7 +64,7 @@ const { toast } = useToast();
 
 function addCourseToCalendar() {
   let course = courseGenerator(courseRawText.value);
-  courses.addCourse({ ...course, id: courses.courses.length });
+  courses.addCourse({ ...course, id: courses.courses.length, local: true });
   toast({
     title: "Curso añadido",
     description: "El curso se ha añadido al calendario",

@@ -40,11 +40,11 @@ watch(selectedCourseGroup, async (value) => {
 });
 
 async function getGroupLectures(group_id: number) {
-  if (props.course.id == null) {
+  if (props.course.local) {
+    console.log(props.course.groups)
     const result = props.course.groups.find(
       (group) => group.group_id == group_id
     )?.lectures;
-    console.log(result);
     return result;
   }
   const result = await supabase

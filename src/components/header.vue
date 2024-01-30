@@ -31,7 +31,7 @@ onMounted(() => {
           alt="version"
         />
       </li>
-      <section class="flex flex-col align-end justify-center">
+      <section class="hidden sm:flex flex-col align-end justify-center">
         <h2 class="text-lg self-end">{{ count }} cursos en el indice</h2>
         <h3 class="text-xs">
           Ultima actualizacion del indice: 2:14PM 1/10/2024

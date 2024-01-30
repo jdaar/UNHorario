@@ -119,8 +119,6 @@ export function groupGenerator(_values: string): Group[] {
   if (!_values) return [];
   const values = _values.trim();
   if (values.startsWith("Prerrequisitos")) return [];
-  //|(\((.*-)?[0-9]*\).*Estudiantes\s?.*)
-  //const groupRegex = new RegExp('^\(.*\)\s?(Grupo|Peama|Estudiante).*\r$', 'gi')
   const groupRegex = new RegExp("((.*-)?[0-9]*).*Grupo [0-9]{1,2}.*", "gi");
 
   const groups: { [x: string]: { start: number; end: number } } = {};
@@ -223,7 +221,6 @@ export function courseGenerator(values: string): Course {
     relevantData.split("\n")[1].split(":")[1].trim() == "LIBRE ELECCIÓN"
       ? CourseType.freeChoice
       : CourseType.obligatory;
-  console.log(relevantData.split(/CLASE .* \(.*\)/)[1]);
   const groups = groupGenerator(relevantData.split(/CLASE .* \(.*\)/)[1]);
 
   const course: Course = {

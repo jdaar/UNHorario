@@ -41,7 +41,7 @@ watch(selectedCourseGroup, async (value) => {
 
 async function getGroupLectures(group_id: number) {
   if (props.course.local) {
-    console.log(props.course.groups)
+    console.log(props.course.groups);
     const result = props.course.groups.find(
       (group) => group.group_id == group_id
     )?.lectures;

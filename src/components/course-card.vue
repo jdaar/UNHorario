@@ -108,7 +108,7 @@ onMounted(async () => {
         </div>
         <div class="w-full">
           <h4 class="text-md font-semibold">
-            {{ course?.name }}
+            {{ course?.name }} ({{ course?.code }})
           </h4>
           <ul>
             <li class="flex content-center flex-wrap gap-2">

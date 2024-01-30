@@ -25,7 +25,9 @@ onMounted(() => {
 <template>
   <Header></Header>
   <Tabs default-value="cronogram" class="h-full">
-      <TabsList class="flex justify-center sm:w-fit mb-0 pt-0 pb-0 mt-sm ml-md mr-md">
+    <TabsList
+      class="flex justify-center sm:w-fit mb-0 pt-0 pb-0 mt-sm ml-md mr-md"
+    >
       <ScrollArea>
         <div class="flex flex-row justify-center flex-nowrap h-fit">
           <TabsTrigger value="cronogram">Cronograma</TabsTrigger>
@@ -36,7 +38,7 @@ onMounted(() => {
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
-      </TabsList>
+    </TabsList>
     <TabsContent value="cronogram">
       <MainLayout>
         <CourseCalendar />

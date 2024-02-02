@@ -111,7 +111,7 @@ function uploadCourses(event: Event) {
     </div>
     <footer class="pl-md pb-lg">
       <Label>
-        Creado por <a href="https://jasprilla.me">Jhonatan David</a>
+        Creado por <a href="https://jhonatan.tech">Jhonatan David</a>
       </Label>
     </footer>
   </div>
